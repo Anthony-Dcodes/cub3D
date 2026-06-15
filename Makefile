@@ -1,6 +1,16 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes# -Wall -Wextra -Werror
+# Production flags -- MAIN
+#CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror
+
+
+# Debug Production flags
+#CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror -g -O0 -fsanitize=address
+# Testing flags
+#CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes
+# Debug flags
+CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -g -O0 -fsanitize=address
+
 
 LIBFT_DIR = master_lib_ft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -43,6 +53,8 @@ $(MLX):
 
 $(NAME): $(OBJS) $(MLX) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+
+
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
