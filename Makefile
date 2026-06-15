@@ -33,10 +33,10 @@ OBJC = $(SRCS:.c=.o)
 
 all: $(NAME) $(LIBFT) $(MLX)
 
-$(LIBFT)
+$(LIBFT):
 	$(MAKE) -C (LIBFT_DIR)
 
-$(MLX)
+$(MLX):
 	$(MAKE) -C (MLX_DIR)
 
 $(NAME): $(OBJC) $(MLX) $(LIBFT)
