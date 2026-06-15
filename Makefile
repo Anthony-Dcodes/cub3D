@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Iminilibx-linx -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror
+CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes# -Wall -Wextra -Werror
 
 LIBFT_DIR = master_lib_ft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -11,12 +11,14 @@ MLX = $(MLX_DIR)/libmlx.a
 
 
 SRCS_RENDER = src/render
+SRCS_PARSER = src/parser
 
 SRCS = \
 	src/main.c \
-	$(SRCS_RENDER)/clenup.c \
+	$(SRCS_RENDER)/cleanup.c \
 	$(SRCS_RENDER)/pixel_utils.c \
-	$(SRCS_RENDER)/render_scene.c
+	$(SRCS_RENDER)/render_scene.c \
+	$(SRCS_PARSER)/parser.c
 
 
 HEADERS = \

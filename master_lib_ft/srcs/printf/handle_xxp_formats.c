@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:18:12 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/12 21:48:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/15 13:51:57 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "libftpp.h"
 
-void static	to_upper(char *str)
+static void	to_upper(char *str)
 {
 	int	i;
 

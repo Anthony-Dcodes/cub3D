@@ -6,11 +6,12 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/15 12:09:36 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/15 14:05:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
+#include <stdlib.h>
 #include "cub3d.h"
 
 void	clean_up(t_player *player, int exit_status)

@@ -1,18 +1,9 @@
+#pragma once
+
 #define mapWidth 8
 #define mapHeight 8
 #define screenWidth 640
 #define screenHeight 480
-
-char *worldMap[] = {
-    "11111111",
-    "10000101",
-    "10000001",
-    "10101101",
-    "10000011",
-    "10111001",
-    "10000011",
-    "11111111",
-};
 
 typedef struct s_map
 {
