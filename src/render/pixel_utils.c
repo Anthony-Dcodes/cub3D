@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:05:10 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/15 13:19:09 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/15 14:23:15 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	put_scene_pixel(t_player *player, int x1, int y1)
 {
 	int	final_color;
 
-	final_color = create_trgb(10, 156, 156, 200);
+	final_color = create_trgb(10, 156, 8, 200);
 	my_mlx_pixel_put(&player->mlx_struct, x1, y1, final_color);
 }

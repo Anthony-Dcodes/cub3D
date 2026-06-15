@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:02:27 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/15 13:21:13 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/15 14:24:16 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	render_scene(void *param)
 
 	player = (t_player *)param;
 	y1 = 0;
-	while (y1 < player->world_map.map_height)
+	while (y1 < player->mlx_struct.win_height)
 	{
 		x1 = 0;
-		while (x1 < player->world_map.map_widht)
+		while (x1 < player->mlx_struct.win_width)
 		{
 			put_scene_pixel(player, x1, y1);
 			++x1;
