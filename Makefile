@@ -1,5 +1,5 @@
 NAME = cub3D
-CC = CC
+CC = cc
 CFLAGS = -Iminilibx-linx -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror
 
 LIBFT_DIR = master_lib_ft
@@ -24,31 +24,32 @@ HEADERS = \
 	includes/render.h \
 	includes/parser.h
 
-OBJC = $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 # --- Rebuild if headers change ---
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
-all: $(NAME) $(LIBFT) $(MLX)
+all: $(LIBFT) $(MLX) $(NAME)
 
 $(LIBFT):
-	$(MAKE) -C (LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX):
-	$(MAKE) -C (MLX_DIR)
+	$(MAKE) -C $(MLX_DIR)
 
-$(NAME): $(OBJC) $(MLX) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJC) $(MLX) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(OBJS) $(MLX) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MLX_DIR) clean
-	rm -f $(OBJC)
+	rm -f $(OBJS)
 
 fclean: clean
-	$(MAKE) fclean -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(MLX_DIR) clean
 	rm -f $(MLX)
 	rm -f $(NAME)
 
