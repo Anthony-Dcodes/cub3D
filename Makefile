@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-# Production flags -- MAIN
+# Production flags -----MAIN-----
 #CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror
 
 
