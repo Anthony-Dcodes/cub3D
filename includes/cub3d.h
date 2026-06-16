@@ -1,9 +1,20 @@
 #pragma once
 
-#define mapWidth 8
-#define mapHeight 8
 #define screenWidth 640
 #define screenHeight 480
+
+typedef enum e_error
+{
+	ERR_OK,
+	ERR_MALLOC,
+	ERR_PARSER,
+	ERR_RENDER,
+	ERR_ARGS,
+	ERR_MAP,
+	ERR_RGB,
+	ERR_TEXTURES
+}	t_error;
+
 
 typedef struct s_map
 {
