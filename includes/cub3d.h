@@ -1,7 +1,12 @@
 #pragma once
 
-#define screenWidth 640
-#define screenHeight 480
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+
+#define NORTH 0 // dir_x = 0, dir_y = -1
+#define SOUTH 1 // dir_x = 0, dir_y = 1
+#define EAST 2 // dir_x = 1, dir_y = 0
+#define WEST 3 // dir_x = -1, dir_y = 0
 
 typedef enum e_error
 {
@@ -13,40 +18,51 @@ typedef enum e_error
 	ERR_MAP,
 	ERR_RGB,
 	ERR_TEXTURES
+	// Bunch more Error codes needed for specific problems
 }	t_error;
 
 
-typedef struct s_map
+typedef struct s_img
 {
-	int		map_widht;
-	int		map_height;
-	char	**map;
-}	t_map;
-
-// Window context + image
-typedef struct s_vars
-{
-	void		*mlx;
-	void		*win;
-	int			win_width;
-	int			win_height;
-	void		*img;
-	char		*i_addr;
-	int			i_bits_per_pixel;
-	int			i_line_length;
-	int			i_endian;
-}	t_mlx;
+    void    *img;
+    char    *addr;
+    int     bpp;
+    int     line_len;
+    int     endian;
+    int     width;
+    int     height;
+}	t_img;
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
+	double	pos_x; // PARSER x index + 0.5
+	double	pos_y; // PARSER y index + 0.5
+	double	dir_x; // PARSER
+	double	dir_y; // PARSER
 	double	plane_x;
 	double	plane_y;
 	double	time;
 	double	old_time;
-	t_mlx	mlx_struct;
-	t_map	world_map;
-} t_player;
+}	t_player;
+
+typedef struct s_map
+{
+	int		map_width; // PARSER max width of the map
+	int		map_height; // PARSER max height of the map
+	char	**map; // PARSER
+}	t_map;
+
+typedef struct s_scene
+{
+    void        *mlx;
+    void        *win;
+    int         win_w;
+    int         win_h;
+    t_img       frame;      // the frame buffer you draw into
+    t_img       texture[4]; // NORTH, SOUTH, EAST, WEST
+    t_map       map;
+    t_player    player;
+    int         floor_color;
+    int         ceiling_color;
+}	t_scene;
+
