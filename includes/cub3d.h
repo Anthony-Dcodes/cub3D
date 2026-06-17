@@ -1,7 +1,7 @@
 #pragma once
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 920
 
 #define NORTH 0 // dir_x = 0, dir_y = -1
 #define SOUTH 1 // dir_x = 0, dir_y = 1
