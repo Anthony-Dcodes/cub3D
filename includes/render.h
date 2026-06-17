@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 13:04:48 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 13:15:14 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,6 @@ void	assign_ray_dirs(t_vector *vector, t_player *player);
 void	assign_delta_dists(t_vector *vector);
 void	assign_map_pos(t_vector *vector, t_player *player);
 void	assign_step_side_dist(t_vector *vector, t_player *player);
+
+// Digital differential analyser
+void	dda(t_vector *vector, char **map);
