@@ -6,10 +6,11 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 15:54:31 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 16:44:12 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 18:06:04 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "cub3d.h"
 #include "render.h"
 
@@ -66,6 +67,31 @@ void	move_player(t_player *player, int keycode)
 	}
 }
 
+void	rotate_player(t_player *player, int keycode)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+	
+	if (keycode == KEY_LEFT)
+	{
+		old_dir_x = player->dir_x;
+		player->dir_x = player->dir_x * cos(ROT_SPEED) - player->dir_y * sin(ROT_SPEED);
+		player->dir_y = old_dir_x * sin(ROT_SPEED) + player->dir_y * cos(ROT_SPEED);
+		old_plane_x = player->plane_x;
+		player->plane_x = player->plane_x * cos(ROT_SPEED) - player->plane_y * sin(ROT_SPEED);
+		player->plane_y = old_plane_x * sin(ROT_SPEED) + player->plane_y * cos(ROT_SPEED);
+	}
+	else if (keycode == KEY_RIGHT)
+	{
+		old_dir_x = player->dir_x;
+		player->dir_x = player->dir_x * cos(-ROT_SPEED) - player->dir_y * sin(-ROT_SPEED);
+		player->dir_y = old_dir_x * sin(-ROT_SPEED) + player->dir_y * cos(-ROT_SPEED);
+		old_plane_x = player->plane_x;
+		player->plane_x = player->plane_x * cos(-ROT_SPEED) - player->plane_y * sin(-ROT_SPEED);
+		player->plane_y = old_plane_x * sin(-ROT_SPEED) + player->plane_y * cos(-ROT_SPEED);
+	}
+}
+
 int	handle_window_close(void *param)
 {
 	t_scene	*scene;
@@ -83,5 +109,6 @@ int	key_press_hook(int keycode, void	*param)
 	if (keycode == KEY_ESC)
 		clean_up(scene, ERR_OK);
 	move_player(&scene->player, keycode);
+	rotate_player(&scene->player, keycode);
 	return (0);
 }

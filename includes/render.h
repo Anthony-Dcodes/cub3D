@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 16:46:50 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 18:07:01 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ typedef struct s_vector
 # define ON_EXPOSE 12
 # define ON_DESTROY 17
 
-# define MOVE_SPEED 0.05
+# define MOVE_SPEED 1
+# define ROT_SPEED 0.1
 
 void	clean_up(t_scene *scene, int exit_status);
 int		create_trgb(int t, int r, int g, int b);
@@ -92,3 +93,4 @@ void	dda(t_vector *vector, char **map);
 int		key_press_hook(int keycode, void	*param);
 int		handle_window_close(void *param);
 void	move_player(t_player *player, int keycode);
+void	rotate_player(t_player *player, int keycode);
