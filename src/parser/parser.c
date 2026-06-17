@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:11:42 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 15:38:30 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 18:25:55 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	parse_arguments(t_scene *scene, int argc, char *argv[])
 	scene->player.dir_y = 1;
 	scene->player.plane_x = 0.66;
 	scene->player.plane_y = 0;
-	scene->floor_color = GRAY;
-	scene->ceiling_color = BLACK;
+	scene->floor_color = YELLOW;
+	scene->ceiling_color = WHITE;
 }
