@@ -6,12 +6,13 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:50:56 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 14:11:21 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 14:58:19 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "render.h"
+#include <math.h>
 
 void assign_ray_dirs(t_vector *vector, t_player *player)
 {
