@@ -31,6 +31,7 @@ SRCS = \
 	$(SRCS_RENDER)/dda_algo.c \
 	$(SRCS_RENDER)/line_calc.c \
 	$(SRCS_RENDER)/vector_calc.c \
+	$(SRCS_RENDER)/event_hooks.c \
 	$(SRCS_PARSER)/parser.c
 
 

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 14:39:32 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 16:46:50 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,28 @@ typedef struct s_vector
 #define GRAY    0x808080
 #define ORANGE  0xFF8000
 
+// Keys
+# define KEY_ESC 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+
+// Events
+# define ON_KEYDOWN 2
+# define ON_KEYUP 3
+# define ON_MOUSEDOWN 4
+# define ON_MOUSEUP 5
+# define ON_MOUSEMOVE 6
+# define ON_EXPOSE 12
+# define ON_DESTROY 17
+
+# define MOVE_SPEED 0.05
+
 void	clean_up(t_scene *scene, int exit_status);
 int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_scene *scene, int x, int y, int color);
@@ -65,3 +87,8 @@ void	assign_draw_start_end(t_vector *vector, int win_h);
 
 // Digital differential analyser
 void	dda(t_vector *vector, char **map);
+
+// Event hooks
+int		key_press_hook(int keycode, void	*param);
+int		handle_window_close(void *param);
+void	move_player(t_player *player, int keycode);

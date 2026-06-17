@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:50:56 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 15:19:01 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 16:22:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void assign_delta_dists(t_vector *vector)
 void assign_map_pos(t_vector *vector, t_player *player)
 {
 	// Get current posstion on the map
+	printf("player posx: %f, posy%f \n", player->pos_x, player->pos_y);
 	vector->map_x = (int)player->pos_x;
 	vector->map_y = (int)player->pos_y;
 	//printf("vector, mapx: %d, mapy: %d\n", vector->map_x, vector->map_y);
