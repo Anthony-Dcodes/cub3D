@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:02:27 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/15 14:24:16 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 10:27:58 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,22 @@
 
 int	render_scene(void *param)
 {
-	t_player	*player;
+	t_scene	*scene;
 	int			x1;
 	int			y1;
 
-	player = (t_player *)param;
+	scene = (t_scene *)param;
 	y1 = 0;
-	while (y1 < player->mlx_struct.win_height)
+	while (y1 < scene->win_h)
 	{
 		x1 = 0;
-		while (x1 < player->mlx_struct.win_width)
+		while (x1 < scene->win_w)
 		{
-			put_scene_pixel(player, x1, y1);
+			put_scene_pixel(scene, x1, y1);
 			++x1;
 		}
 		++y1;
 	}
-	mlx_put_image_to_window(player->mlx_struct.mlx, player->mlx_struct.win,
-		player->mlx_struct.img, 0, 0);
+	mlx_put_image_to_window(scene->mlx, scene->win, scene->frame.img, 0, 0);
 	return (0);
 }
