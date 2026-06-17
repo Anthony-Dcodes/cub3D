@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:05:10 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 10:26:34 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 14:42:07 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "render.h"
 
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -26,10 +27,19 @@ void	my_mlx_pixel_put(t_scene *scene, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	put_scene_pixel(t_scene *scene, int x1, int y1)
+void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 {
 	int	final_color;
 
-	final_color = create_trgb(10, 156, 8, 200);
+	if (y1 < vector->draw_start)
+		final_color = scene->ceiling_color;
+	else if (y1 > vector->draw_end)
+		final_color = scene->floor_color;
+	else
+		final_color = MAGENTA;
+	if (vector->side == 1)
+	{
+		final_color /= 2;
+	}
 	my_mlx_pixel_put(scene, x1, y1, final_color);
 }

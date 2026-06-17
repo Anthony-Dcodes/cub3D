@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:11:42 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 10:18:24 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 14:37:02 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "render.h"
 
 void	parse_arguments(t_scene *scene, int argc, char *argv[])
 {
@@ -37,4 +38,6 @@ void	parse_arguments(t_scene *scene, int argc, char *argv[])
 	scene->player.dir_y = 1;
 	scene->player.plane_x = 0.66;
 	scene->player.plane_y = 0;
+	scene->floor_color = GRAY;
+	scene->ceiling_color = BLACK;
 }
