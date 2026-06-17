@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:02:27 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 13:15:32 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 14:12:02 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	render_scene(void *param)
 		assign_map_pos(&vector, &scene->player);
 		assign_step_side_dist(&vector, &scene->player);
 		dda(&vector, scene->map.map);
+		assign_perp_wall_dist(&vector);
 		put_scene_pixel(scene, x1, y1);
 		++x1;
 	}

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:50:56 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 13:04:30 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 14:11:21 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,17 @@ void assign_step_side_dist(t_vector *vector, t_player *player)
 	{
 		vector->step_y = 1;
 		vector->side_dist_y = (player->pos_y - vector->map_y + 1) * vector->delta_dist_y;
+	}
+}
+
+void	assign_perp_wall_dist(t_vector *vector)
+{
+	if (vector->side == 0)
+	{
+		vector->perp_wall_dist = (vector->side_dist_x - vector->delta_dist_x);
+	}
+	else
+	{
+		vector->perp_wall_dist = (vector->side_dist_y - vector->delta_dist_y);
 	}
 }
