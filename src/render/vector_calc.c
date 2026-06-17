@@ -6,13 +6,14 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:50:56 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 14:58:19 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 15:19:01 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "render.h"
 #include <math.h>
+#include <stdio.h>
 
 void assign_ray_dirs(t_vector *vector, t_player *player)
 {
@@ -24,7 +25,7 @@ void assign_ray_dirs(t_vector *vector, t_player *player)
 	p_dir_x = player->dir_x;
 	p_dir_y = player->dir_y;
 	p_plane_x = player->plane_x;
-	p_plane_x = player->plane_y;
+	p_plane_y = player->plane_y;
 	vector->ray_dir_x = p_dir_x + p_plane_x * vector->camera_x;
 	vector->ray_dir_y = p_dir_y + p_plane_y * vector->camera_x;
 }
@@ -39,8 +40,9 @@ void assign_delta_dists(t_vector *vector)
 void assign_map_pos(t_vector *vector, t_player *player)
 {
 	// Get current posstion on the map
-	vector->map_x = player->pos_x;
-	vector->map_y = player->pos_y;
+	vector->map_x = (int)player->pos_x;
+	vector->map_y = (int)player->pos_y;
+	//printf("vector, mapx: %d, mapy: %d\n", vector->map_x, vector->map_y);
 }
 
 void assign_step_side_dist(t_vector *vector, t_player *player)

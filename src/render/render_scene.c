@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:02:27 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 14:39:44 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 15:18:16 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	render_scene(void *param)
 	x1 = 0;
 	while (x1 < scene->win_w)
 	{
-		vector.camera_x = (2 * x1 / scene->win_w) - 1;
+		vector.camera_x = (2 * (double)x1 / (double)scene->win_w) - 1;
 		assign_ray_dirs(&vector, &scene->player);
 		assign_delta_dists(&vector);
 		assign_map_pos(&vector, &scene->player);

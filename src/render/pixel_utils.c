@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:05:10 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 14:42:07 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 15:23:27 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 	else if (y1 > vector->draw_end)
 		final_color = scene->floor_color;
 	else
-		final_color = MAGENTA;
-	if (vector->side == 1)
 	{
-		final_color /= 2;
+		final_color = MAGENTA;
+		if (vector->side == 1)
+			final_color = ORANGE;
 	}
 	my_mlx_pixel_put(scene, x1, y1, final_color);
 }

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:41:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 13:14:35 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 15:16:18 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	dda(t_vector *vector, char **map)
 			vector->map_y += vector->step_y;
 			vector->side = 1;
 		}
-		if (map[vector->map_x][vector->map_y] > 0)
+		if (map[vector->map_y][vector->map_x] == '1')
 			vector->hit = 1;
 	}
 }

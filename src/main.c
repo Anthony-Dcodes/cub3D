@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:40:48 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 10:22:59 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 15:00:38 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,15 @@ int	main(int argc, char *argv[])
 {
 	t_scene	scene;
 
-	if (argc != 2)
-		return (1);
 	scene.mlx = mlx_init();
 	if (scene.mlx == NULL)
 		clean_up(&scene, -1);
 	parse_arguments(&scene, argc, argv);
-	scene.win = mlx_new_window(scene.win, scene.win_w,
+	scene.win = mlx_new_window(scene.mlx, scene.win_w,
 			scene.win_h, "cub3D");
 	if (scene.win == NULL)
 		clean_up(&scene, -1);
-	scene.frame.img = mlx_new_image(scene.win, scene.win_w,
+	scene.frame.img = mlx_new_image(scene.mlx, scene.win_w,
 			scene.win_h);
 	scene.frame.addr = mlx_get_data_addr(scene.frame.img, &scene.frame.bpp,
 			&scene.frame.line_len, &scene.frame.endian);

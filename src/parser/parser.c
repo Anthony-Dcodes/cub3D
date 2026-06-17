@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:11:42 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 14:37:02 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/17 15:14:57 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	parse_arguments(t_scene *scene, int argc, char *argv[])
 {
-	char *worldMap[] = {
+	static char *worldMap[] = {
     "11111111",
     "10000101",
     "10000001",
