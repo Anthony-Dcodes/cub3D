@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 18:07:01 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/18 10:34:52 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_vector
 # define ON_EXPOSE 12
 # define ON_DESTROY 17
 
-# define MOVE_SPEED 1
+# define MOVE_SPEED 0.2
 # define ROT_SPEED 0.1
 
 void	clean_up(t_scene *scene, int exit_status);

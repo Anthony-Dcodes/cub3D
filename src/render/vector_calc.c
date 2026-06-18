@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_calc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:50:56 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 16:22:10 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/18 10:32:07 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void assign_ray_dirs(t_vector *vector, t_player *player)
 	double	p_dir_y;
 	double	p_plane_x;
 	double	p_plane_y;
-	
+
 	p_dir_x = player->dir_x;
 	p_dir_y = player->dir_y;
 	p_plane_x = player->plane_x;
@@ -56,7 +56,7 @@ void assign_step_side_dist(t_vector *vector, t_player *player)
 	else
 	{
 		vector->step_x = 1;
-		vector->side_dist_x = (player->pos_x - vector->map_x + 1) * vector->delta_dist_x;
+		vector->side_dist_x = (vector->map_x + 1 - player->pos_x) * vector->delta_dist_x;
 	}
 	if (vector->ray_dir_y < 0)
 	{
@@ -66,7 +66,7 @@ void assign_step_side_dist(t_vector *vector, t_player *player)
 	else
 	{
 		vector->step_y = 1;
-		vector->side_dist_y = (player->pos_y - vector->map_y + 1) * vector->delta_dist_y;
+		vector->side_dist_y = (vector->map_y + 1 - player->pos_y) * vector->delta_dist_y;
 	}
 }
 
