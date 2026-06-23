@@ -3,6 +3,18 @@
 #define screenWidth 640
 #define screenHeight 480
 
+#define NORTH 0 // dir_x = 0, dir_y = -1
+#define SOUTH 1 // dir_x = 0, dir_y = 1
+#define EAST 2 // dir_x = 1, dir_y = 0
+#define WEST 3 // dir_x = -1, dir_y = 0
+#define FLOOR 4
+#define CEILING 5
+#define UNKNOWN 6
+#define EMPTY 7
+
+#include <fcntl.h>
+#include <stdlib.h>
+
 typedef enum e_error
 {
 	ERR_OK,
@@ -14,7 +26,6 @@ typedef enum e_error
 	ERR_RGB,
 	ERR_TEXTURES
 }	t_error;
-
 
 typedef struct s_map
 {
@@ -50,3 +61,17 @@ typedef struct s_player
 	t_mlx	mlx_struct;
 	t_map	world_map;
 } t_player;
+
+typedef struct s_scene
+{
+	void		*mlx;
+	void		*win;
+	int			win_w;
+	int			win_h;
+	t_img		frame;		// the frame buffer you draw into
+	t_img		texture[4];	// NORTH, SOUTH, EAST, WEST
+	t_map		map;
+	t_player	player;
+	int			floor_color;
+	int			ceiling_color;
+}	t_scene;
