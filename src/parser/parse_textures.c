@@ -113,7 +113,7 @@ int	parse_cub_file(char *path, t_scene *scene)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (printf("Error\nCannot open the file\n"), ERR_ARGS);
+		return (free(path), printf("Error\nCannot open the file\n"), ERR_ARGS);
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("%s", line);
