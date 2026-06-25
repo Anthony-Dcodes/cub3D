@@ -6,7 +6,7 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:10:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/25 19:04:49 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/06/25 19:06:42 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	parse_arguments(t_scene *scene, int argc, char *argv[]);
 
-int	input_validate(int argc, char **argv)
+int		input_validate(int argc, char **argv);
 int		skip_whitespaces(char *s);
 char	*parse_texture_path(char *line, int i);
 int		get_single_rgb(char *line, int *i);
