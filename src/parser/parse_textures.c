@@ -12,60 +12,7 @@
 
 #include "cub3d.h"
 
-int	skip_whitespaces(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13))
-		i++;
-	return (i);
-}
-
-int	is_empty_line(char *line)
-{
-	int	i;
-
-	i = skip_whitespaces(line);
-		if (line[i] == '\n' || line[i] == '\0')
-			return (1);
-	return (0);
-}
-
-int parse_texture_path(char *line, int i)
-{
-	int		start;
-	int		len;
-	char	*path;
-
-	i =+ skip_whitespaces(line);
-	len = 0;
-	start = i;
-	while (line[i] != '\0' || line[i] != '\n' || line != ' ')
-	{
-		len++;
-		i++;
-	}
-	path = ft_substr(line, start, len);
-	return (path);
-}
-
-int	get_single_rgb(char *line, int *i)
-{
-	int	val;
-
-	if (!ft_isdigit(line[*i]))
-		return (-1);
-	val = 0;
-	while (ft_isdigit(line[*i]))
-	{
-		val = (val * 10) + (line[*i] - '0');
-		(*i)++;
-	}
-	return (val);
-}
-
-int parse_color(char *line, int i, int *color_dest)
+int	parse_color(char *line, int i, int *color_dest)
 {
 	int	r;
 	int	g;
@@ -80,45 +27,59 @@ int parse_color(char *line, int i, int *color_dest)
 	if (g < 0 || g > 255 || line[i++] != ',')
 		return (ERR_RGB);
 	b = get_single_rgb(line, &i);
-	if (b < 0 || b > 255 || line[i++] != ',')
+	if (b < 0 || b > 255)
+		return (ERR_RGB);
+	i += skip_whitespaces(line + i);
+	if (line[i] != '\n' && line[i] != '\0')
 		return (ERR_RGB);
 	*color_dest = (r << 16) | (g << 8) | b;
-	return (ERR_OK);		
-}
-
-int	identify_elements(char *line, int i)
-{
-	if (is_empty_line(line))
-		return (EMPTY);
-	i = skip_whitespaces(line);
-	if (ft_strncmp(line + i, "NO", 2) == 0)
-		return (NORTH);
-	else if (ft_strncmp(line + i, "SO", 2) == 0)
-		return (SOUTH);
-	else if (ft_strncmp(line + i, "EA", 2) == 0)
-		return (EAST);
-	else if (ft_strncmp(line + i, "WE", 2) == 0)
-		return (WEST);
-	else if (ft_strncmp(line + i, "F", 1) == 0)
-		return (FLOOR);
-	else if (ft_strncmp(line + i, "C", 1) == 0)
-		return (CEILING);
-	return (UNKNOWN);
-}
-
-int	parse_cub_file(char *path, t_scene *scene)
-{
-	int		fd;
-	char	*line;
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		return (free(path), printf("Error\nCannot open the file\n"), ERR_ARGS);
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s", line);
-		free(line);
-	}
-	close(fd);
 	return (ERR_OK);
 }
+
+int	load_texture(int type, t_scene *scene, char *line, int *elem_loaded)
+{
+	int	fd;
+
+	if (scene->tex_paths[type] != NULL)
+		return (ERR_TEXTURES);
+	scene->tex_paths[type] = parse_texture_path(line, 2);
+	if (!scene->tex_paths[type])
+		return (ERR_TEXTURES);
+	fd = open(scene->tex_paths[type], O_RDONLY);
+	if (fd < 0)
+	{
+		free(scene->tex_paths[type]);
+		scene->tex_paths[type] = NULL;
+		return (ERR_TEXTURES);
+	}
+	close(fd);
+	(*elem_loaded)++;
+	return (ERR_OK);
+}
+
+int	load_color(int type, t_scene *scene, char *line, int *elem_loaded)
+{
+	int	err;
+
+	if (type == FLOOR)
+		err = parse_color(line, 1, &scene->floor_color);
+	else
+		err = parse_color(line, 1, &scene->ceiling_color);
+	if (err != ERR_OK)
+		return (err);
+	(*elem_loaded)++;
+	return (ERR_OK);
+}
+
+int	check_type(int type, t_scene *scene, char *line, int *elem_loaded)
+{
+	if (type == EMPTY)
+		return (ERR_OK);
+	else if (type >= NORTH && type <= WEST)
+		return (load_texture(type, scene, line, elem_loaded));
+	else if (type == FLOOR || type == CEILING)
+		return (load_color(type, scene, line, elem_loaded));
+	else
+		return (UNKNOWN);
+}
+
