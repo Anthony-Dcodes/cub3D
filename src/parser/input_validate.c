@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int input_validate(int argc, char **argv)
+int	input_validate(int argc, char **argv)
 {
 	int		fd;
 	int		len;

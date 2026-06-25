@@ -31,13 +31,13 @@ typedef enum e_error
 
 typedef struct s_img
 {
-    void    *img;
-    char    *addr;
-    int     bpp;
-    int     line_len;
-    int     endian;
-    int     width;
-    int     height;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_player
@@ -61,14 +61,15 @@ typedef struct s_map
 
 typedef struct s_scene
 {
-    void        *mlx;
-    void        *win;
-    int         win_w;
-    int         win_h;
-    t_img       frame;      // the frame buffer you draw into
-    t_img       texture[4]; // NORTH, SOUTH, EAST, WEST
-    t_map       map;
-    t_player    player;
-    int         floor_color;
-    int         ceiling_color;
+	void		*mlx;
+	void		*win;
+	char		*tex_paths[4];
+	int			win_w;
+	int			win_h;
+	t_img		frame;		// the frame buffer you draw into
+	t_img		texture[4]; // NORTH, SOUTH, EAST, WEST
+	t_map		map;
+	t_player	player;
+	int			floor_color;
+	int			ceiling_color;
 }	t_scene;
