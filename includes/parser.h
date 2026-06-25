@@ -14,4 +14,4 @@
 
 #include "cub3d.h"
 
-void	parse_arguments(t_player *player, int argc, char *argv[]);
+void	parse_arguments(t_scene *scene, int argc, char *argv[]);
