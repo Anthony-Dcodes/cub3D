@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 14:14:06 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 14:25:02 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/30 14:41:40 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cub3d.h"
 
 // Need to add error handling and cleanup later
-int	load_textures(t_scene *scene)
+int	load_textures_render(t_scene *scene)
 {
 	load_texture(scene, &scene->texture[NORTH], scene->tex_paths[NORTH]);
 	load_texture(scene, &scene->texture[SOUTH], scene->tex_paths[SOUTH]);
