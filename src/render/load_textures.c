@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 14:14:06 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 14:56:13 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:02:43 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,20 @@
 // Need to add error handling and cleanup later
 int	load_textures_render(t_scene *scene)
 {
-	load_texture_render(scene, &scene->texture[NORTH], scene->tex_paths[NORTH]);
-	load_texture_render(scene, &scene->texture[SOUTH], scene->tex_paths[SOUTH]);
-	load_texture_render(scene, &scene->texture[EAST], scene->tex_paths[EAST]);
-	load_texture_render(scene, &scene->texture[WEST], scene->tex_paths[WEST]);
+	int	ret;
+
+	ret = load_texture_render(scene, &scene->texture[NORTH], scene->tex_paths[NORTH]);
+	if (ret != ERR_OK)
+		exit(1);
+	ret = load_texture_render(scene, &scene->texture[SOUTH], scene->tex_paths[SOUTH]);
+	if (ret != ERR_OK)
+		exit(1);
+	ret = load_texture_render(scene, &scene->texture[EAST], scene->tex_paths[EAST]);
+	if (ret != ERR_OK)
+		exit(1);
+	ret = load_texture_render(scene, &scene->texture[WEST], scene->tex_paths[WEST]);
+	if (ret != ERR_OK)
+		exit(1);
 	return (ERR_OK);
 }
 

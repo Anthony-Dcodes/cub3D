@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:05:10 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 15:47:24 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:00:44 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 		final_color = scene->floor_color;
 	else
 	{
-		final_color = MAGENTA;
-		if (vector->side == 1)
-			final_color = BLUE;
+		final_color = get_texture_color(&scene->texture[NORTH], x1, y1);
+		//final_color = MAGENTA;
+		//if (vector->side == 1)
+		//	final_color = BLUE;
 	}
 	my_mlx_pixel_put(scene, x1, y1, final_color);
 }

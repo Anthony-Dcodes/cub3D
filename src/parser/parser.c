@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:11:42 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 14:02:31 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:07:36 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	parse_arguments(t_scene *scene, int argc, char *argv[])
 	scene->player.plane_y = 0;
 	scene->floor_color = YELLOW;
 	scene->ceiling_color = WHITE;
-	scene->tex_paths[NORTH] = "../../textures/wall1.xpm";
-	scene->tex_paths[SOUTH] = "../../textures/wall2.xpm";
-	scene->tex_paths[EAST] = "../../textures/wall3.xpm";
-	scene->tex_paths[WEST] = "../../textures/wall4.xpm";
+	scene->tex_paths[NORTH] = "./textures/wall1.xpm";
+	scene->tex_paths[SOUTH] = "./textures/wall2.xpm";
+	scene->tex_paths[EAST] = "./textures/wall3.xpm";
+	scene->tex_paths[WEST] = "./textures/wall4.xpm";
 }
