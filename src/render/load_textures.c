@@ -6,12 +6,13 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 14:14:06 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 14:43:31 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/30 14:44:26 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "cub3d.h"
+#include "render.h"
 
 // Need to add error handling and cleanup later
 int	load_textures_render(t_scene *scene)
