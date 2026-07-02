@@ -3,21 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 10:08:32 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/02 18:52:18 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdlib.h>
 #include "cub3d.h"
+#include "render.h"
 
 void	clean_up(t_scene *scene, int exit_status)
 {
-	if (!scene)
+	//if (scene->map.map)
+	//	free(scene->map.map);
+	if (!scene->mlx)
 		exit(exit_status);
+	clean_up_textures(scene);
 	if (scene->frame.img)
 		mlx_destroy_image(scene->mlx, scene->frame.img);
 	if (scene->win)
@@ -28,4 +32,12 @@ void	clean_up(t_scene *scene, int exit_status)
 		free(scene->mlx);
 	}
 	exit(exit_status);
+}
+
+void	clean_up_textures(t_scene *scene)
+{
+	mlx_destroy_image(scene->mlx, scene->texture[NORTH].img);
+	mlx_destroy_image(scene->mlx, scene->texture[SOUTH].img);
+	mlx_destroy_image(scene->mlx, scene->texture[EAST].img);
+	mlx_destroy_image(scene->mlx, scene->texture[WEST].img);
 }

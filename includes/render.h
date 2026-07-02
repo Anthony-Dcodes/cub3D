@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 17:29:54 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/02 18:48:55 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,11 @@ typedef struct s_vector
 # define MOVE_SPEED 0.2
 # define ROT_SPEED 0.1
 
+// Cleanup
 void	clean_up(t_scene *scene, int exit_status);
+void	clean_up_textures(t_scene *scene);
+
+// Pixels / render
 int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_scene *scene, int x, int y, int color);
 void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector);
