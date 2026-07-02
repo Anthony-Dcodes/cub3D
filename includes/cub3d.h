@@ -2,6 +2,8 @@
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 920
+#define TEXT_WIDTH 64
+#define TEXT_HEIGHT 64
 
 #define NORTH 0 // dir_x = 0, dir_y = -1
 #define SOUTH 1 // dir_x = 0, dir_y = 1
