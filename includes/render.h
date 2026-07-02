@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 14:56:25 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/02 16:56:03 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_vector
 	int			line_h;
 	int			draw_start;
 	int			draw_end;
+	double		wall_x;
 }	t_vector;
 
 #define WHITE   0xFFFFFF
@@ -81,6 +82,7 @@ void	assign_delta_dists(t_vector *vector);
 void	assign_map_pos(t_vector *vector, t_player *player);
 void	assign_step_side_dist(t_vector *vector, t_player *player);
 void	assign_perp_wall_dist(t_vector *vector);
+void	assign_wall_x(t_vector *vector, t_scene *scene);
 
 // Vertical pixel line calculations
 void	assign_line_h(t_vector *vector, int win_h);

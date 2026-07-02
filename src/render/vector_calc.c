@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_calc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:50:56 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/18 10:32:07 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/02 16:54:44 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,13 @@ void	assign_perp_wall_dist(t_vector *vector)
 	{
 		vector->perp_wall_dist = (vector->side_dist_y - vector->delta_dist_y);
 	}
+}
+
+void	assign_wall_x(t_vector *vector, t_scene *scene)
+{
+	if (vector->side == 0)                        // hit an E/W wall (vertical)
+    	vector->wall_x = scene->player.pos_y + vector->perp_wall_dist * vector->ray_dir_y;
+	else                                           // hit a N/S wall (horizontal)
+    	vector->wall_x = scene->player.pos_x + vector->perp_wall_dist * vector->ray_dir_x;
+	vector->wall_x -= floor(vector->wall_x);       // keep only the fractional part (0.0-1.0)
 }
