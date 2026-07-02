@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_textures.c                                    :+:      :+:    :+:   */
+/*   textures_load.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 14:14:06 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 15:02:43 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/02 17:23:48 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,4 @@ int	load_texture_render(t_scene *scene, t_img *tex, char *path)
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
 		&tex->line_len, &tex->endian);
 	return (ERR_OK);
-}
-
-int	get_texture_color(t_img *tex, int x, int y)
-{
-	char	*pixel;
-
-	pixel = tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
-	return (*(unsigned int *) pixel);
 }

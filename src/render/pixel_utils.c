@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:05:10 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 17:06:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/02 17:29:19 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 	int	heigh;
 	double	step;
 	double	tex_pos;
+	int		wall;
 
 	if (y1 < vector->draw_start)
 		final_color = scene->ceiling_color;
@@ -55,7 +56,8 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 			tex_y = heigh - 1;
 		if (tex_y < 0)
 			tex_y = 0;
-		final_color = get_texture_color(&scene->texture[WEST], tex_x, tex_y);
+		wall = get_wall_texture(vector);
+		final_color = get_texture_color(&scene->texture[wall], tex_x, tex_y);
 		//final_color = MAGENTA;
 		//if (vector->side == 1)
 		//	final_color = BLUE;
