@@ -26,7 +26,7 @@ SRCS_PARSER = src/parser
 SRCS = \
 	src/main.c \
 	$(SRCS_RENDER)/cleanup.c \
-	$(SRCS_RENDER)/pixel_utils.c \
+	$(SRCS_RENDER)/pixel_put.c \
 	$(SRCS_RENDER)/render_scene.c \
 	$(SRCS_RENDER)/vector_dda.c \
 	$(SRCS_RENDER)/vector_delta_dist.c \
