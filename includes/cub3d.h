@@ -2,6 +2,8 @@
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 920
+#define TEXT_WIDTH 64
+#define TEXT_HEIGHT 64
 
 #define NORTH 0 // dir_x = 0, dir_y = -1
 #define SOUTH 1 // dir_x = 0, dir_y = 1
@@ -31,13 +33,13 @@ typedef enum e_error
 
 typedef struct s_img
 {
-    void    *img;
-    char    *addr;
-    int     bpp;
-    int     line_len;
-    int     endian;
-    int     width;
-    int     height;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_player

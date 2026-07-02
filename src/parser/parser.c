@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:11:42 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 18:25:55 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:07:36 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	parse_arguments(t_scene *scene, int argc, char *argv[])
 	"11110111 1110101 101111010001    ",
 	"11111111 1111111 111111111111    "
 	};
-	
-	
+
+
 	// Starting index: 2,1
 	// DIR = SOUTH
 	scene->map.map = worldMap;
@@ -48,4 +48,8 @@ void	parse_arguments(t_scene *scene, int argc, char *argv[])
 	scene->player.plane_y = 0;
 	scene->floor_color = YELLOW;
 	scene->ceiling_color = WHITE;
+	scene->tex_paths[NORTH] = "./textures/wall1.xpm";
+	scene->tex_paths[SOUTH] = "./textures/wall2.xpm";
+	scene->tex_paths[EAST] = "./textures/wall3.xpm";
+	scene->tex_paths[WEST] = "./textures/wall4.xpm";
 }

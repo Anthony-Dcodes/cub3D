@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:40:48 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/17 16:18:03 by advorace         ###   ########.fr       */
+/*   Updated: 2026/06/30 14:41:47 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char *argv[])
 			scene.win_h);
 	scene.frame.addr = mlx_get_data_addr(scene.frame.img, &scene.frame.bpp,
 			&scene.frame.line_len, &scene.frame.endian);
+	load_textures_render(&scene);
 	mlx_put_image_to_window(scene.mlx, scene.win, scene.frame.img, 0, 0);
 	mlx_key_hook(scene.win, key_press_hook, &scene);
 	mlx_hook(scene.win, ON_DESTROY, 0, handle_window_close, &scene);
