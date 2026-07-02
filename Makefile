@@ -33,6 +33,7 @@ SRCS = \
 	$(SRCS_RENDER)/vector_calc.c \
 	$(SRCS_RENDER)/event_hooks.c \
 	$(SRCS_RENDER)/load_textures.c \
+	$(SRCS_RENDER)/player_movement.c \
 	$(SRCS_PARSER)/parser.c
 
 
