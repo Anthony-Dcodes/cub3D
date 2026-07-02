@@ -63,6 +63,7 @@ typedef struct s_scene
 {
     void        *mlx;
     void        *win;
+	char		*tex_paths[4];
     int         win_w;
     int         win_h;
     t_img       frame;      // the frame buffer you draw into
