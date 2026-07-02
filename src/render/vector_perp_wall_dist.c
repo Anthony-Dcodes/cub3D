@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_hooks.c                                      :+:      :+:    :+:   */
+/*   vector_perp_wall_dist.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 15:54:31 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 18:10:45 by advorace         ###   ########.fr       */
+/*   Created: 2026/07/02 18:18:12 by advorace          #+#    #+#             */
+/*   Updated: 2026/07/02 18:18:26 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include "cub3d.h"
 #include "render.h"
 
-int	handle_window_close(void *param)
+void	assign_perp_wall_dist(t_vector *vector)
 {
-	t_scene	*scene;
-
-	scene = (t_scene *)param;
-	clean_up(scene, ERR_OK);
-	return (0);
-}
-
-int	key_press_hook(int keycode, void	*param)
-{
-	t_scene	*scene;
-
-	scene = (t_scene *)param;
-	if (keycode == KEY_ESC)
-		clean_up(scene, ERR_OK);
-	move_player(&scene->player, keycode);
-	rotate_player(&scene->player, keycode);
-	return (0);
+	if (vector->side == 0)
+	{
+		vector->perp_wall_dist = (vector->side_dist_x - vector->delta_dist_x);
+	}
+	else
+	{
+		vector->perp_wall_dist = (vector->side_dist_y - vector->delta_dist_y);
+	}
 }
