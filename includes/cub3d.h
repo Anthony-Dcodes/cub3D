@@ -63,15 +63,15 @@ typedef struct s_map
 
 typedef struct s_scene
 {
-	void		*mlx;
-	void		*win;
+    void        *mlx;
+    void        *win;
 	char		*tex_paths[4];
-	int			win_w;
-	int			win_h;
-	t_img		frame;		// the frame buffer you draw into
-	t_img		texture[4]; // NORTH, SOUTH, EAST, WEST
-	t_map		map;
-	t_player	player;
-	int			floor_color;
-	int			ceiling_color;
+    int         win_w;
+    int         win_h;
+    t_img       frame;      // the frame buffer you draw into
+    t_img       texture[4]; // NORTH, SOUTH, EAST, WEST
+    t_map       map;
+    t_player    player;
+    int         floor_color;
+    int         ceiling_color;
 }	t_scene;

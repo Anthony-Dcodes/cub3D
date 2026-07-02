@@ -16,6 +16,12 @@
 
 void	parse_arguments(t_scene *scene, int argc, char *argv[]);
 
+typedef struct s_map_node		//temporary storage for line from map
+{
+	char				*line;
+	struct s_map_node	*next;
+}	t_map_node;
+
 int		input_validate(int argc, char **argv);
 int		skip_whitespaces(char *s);
 char	*parse_texture_path(char *line, int i);
