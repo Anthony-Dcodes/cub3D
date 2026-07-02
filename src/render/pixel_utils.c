@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:05:10 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 15:00:44 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/02 15:14:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	my_mlx_pixel_put(t_scene *scene, int x, int y, int color)
 void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 {
 	int	final_color;
+	int	tex_x;
+	int	tex_y;
+	int	width;
+	int	heigh;
 
 	if (y1 < vector->draw_start)
 		final_color = scene->ceiling_color;
@@ -37,6 +41,12 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 		final_color = scene->floor_color;
 	else
 	{
+		width = scene->texture[NORTH].width;
+		heigh = scene->texture[NORTH].height;
+		tex_x = (int)(vector->map_x * width);
+		if (tex_x >= width)
+			tex_x = width - 1;
+		tex_y = 
 		final_color = get_texture_color(&scene->texture[NORTH], x1, y1);
 		//final_color = MAGENTA;
 		//if (vector->side == 1)
