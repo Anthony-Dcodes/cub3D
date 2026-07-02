@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:05:10 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 15:14:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/02 15:54:25 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 	int	tex_y;
 	int	width;
 	int	heigh;
+	double	step;
+	double	tex_pos;
 
 	if (y1 < vector->draw_start)
 		final_color = scene->ceiling_color;
@@ -46,8 +48,14 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 		tex_x = (int)(vector->map_x * width);
 		if (tex_x >= width)
 			tex_x = width - 1;
-		tex_y = 
-		final_color = get_texture_color(&scene->texture[NORTH], x1, y1);
+		step = (double)heigh / vector->line_h;
+		tex_pos = (y1 - vector->draw_start) * step;
+		tex_y = (int)tex_pos;
+		if (tex_y >= heigh)
+			tex_y = heigh - 1;
+		if (tex_y < 0)
+			tex_y = 0;
+		final_color = get_texture_color(&scene->texture[NORTH], tex_x, tex_y);
 		//final_color = MAGENTA;
 		//if (vector->side == 1)
 		//	final_color = BLUE;
