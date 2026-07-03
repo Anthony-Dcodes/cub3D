@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vector_wall_x.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 18:18:39 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 18:18:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/03 13:52:52 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "render.h"
+#include <math.h>
 
 void	assign_wall_x(t_vector *vector, t_scene *scene)
 {
