@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 19:07:28 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 17:41:54 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,14 @@ void	clean_up(t_scene *scene, int exit_status)
 
 void	clean_up_textures(t_scene *scene)
 {
-	mlx_destroy_image(scene->mlx, scene->texture[NORTH].img);
-	mlx_destroy_image(scene->mlx, scene->texture[SOUTH].img);
-	mlx_destroy_image(scene->mlx, scene->texture[EAST].img);
-	mlx_destroy_image(scene->mlx, scene->texture[WEST].img);
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (scene->texture[i].img)
+			mlx_destroy_image(scene->mlx, scene->texture[i].img);
+		free(scene->tex_paths[i]);
+		++i;
+	}
 }
