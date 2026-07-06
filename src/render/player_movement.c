@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 15:49:15 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 18:11:00 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:22:16 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,42 @@ void	move_player(t_player *player, int keycode)
 
 void	rotate_player(t_player *player, int keycode)
 {
+	if (keycode == KEY_LEFT)
+		rotate_left(player, keycode);
+	else if (keycode == KEY_RIGHT)
+		rotate_right(player, keycode);
+}
+
+void	rotate_left(t_player *player, int keycode)
+{
 	double	old_dir_x;
 	double	old_plane_x;
-	
-	if (keycode == KEY_LEFT)
-	{
-		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(ROT_SPEED) - player->dir_y * sin(ROT_SPEED);
-		player->dir_y = old_dir_x * sin(ROT_SPEED) + player->dir_y * cos(ROT_SPEED);
-		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(ROT_SPEED) - player->plane_y * sin(ROT_SPEED);
-		player->plane_y = old_plane_x * sin(ROT_SPEED) + player->plane_y * cos(ROT_SPEED);
-	}
-	else if (keycode == KEY_RIGHT)
-	{
-		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(-ROT_SPEED) - player->dir_y * sin(-ROT_SPEED);
-		player->dir_y = old_dir_x * sin(-ROT_SPEED) + player->dir_y * cos(-ROT_SPEED);
-		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(-ROT_SPEED) - player->plane_y * sin(-ROT_SPEED);
-		player->plane_y = old_plane_x * sin(-ROT_SPEED) + player->plane_y * cos(-ROT_SPEED);
-	}
+
+	old_dir_x = player->dir_x;
+	player->dir_x = player->dir_x * cos(ROT_SPEED)
+		- player->dir_y * sin(ROT_SPEED);
+	player->dir_y = old_dir_x * sin(ROT_SPEED)
+		+ player->dir_y * cos(ROT_SPEED);
+	old_plane_x = player->plane_x;
+	player->plane_x = player->plane_x * cos(ROT_SPEED)
+		- player->plane_y * sin(ROT_SPEED);
+	player->plane_y = old_plane_x * sin(ROT_SPEED)
+		+ player->plane_y * cos(ROT_SPEED);
+}
+
+void	rotate_right(t_player *player, int keycode)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = player->dir_x;
+	player->dir_x = player->dir_x * cos(-ROT_SPEED)
+		- player->dir_y * sin(-ROT_SPEED);
+	player->dir_y = old_dir_x * sin(-ROT_SPEED)
+		+ player->dir_y * cos(-ROT_SPEED);
+	old_plane_x = player->plane_x;
+	player->plane_x = player->plane_x * cos(-ROT_SPEED)
+		- player->plane_y * sin(-ROT_SPEED);
+	player->plane_y = old_plane_x * sin(-ROT_SPEED)
+		+ player->plane_y * cos(-ROT_SPEED);
 }

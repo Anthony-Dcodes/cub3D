@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 18:16:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:22:49 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,12 @@ void	dda(t_vector *vector, char **map);
 // Event hooks
 int		key_press_hook(int keycode, void	*param);
 int		handle_window_close(void *param);
+
+// Player movement
 void	move_player(t_player *player, int keycode);
 void	rotate_player(t_player *player, int keycode);
+void	rotate_left(t_player *player, int keycode);
+void	rotate_right(t_player *player, int keycode);
 
 // Textures
 int		load_textures_render(t_scene *scene);

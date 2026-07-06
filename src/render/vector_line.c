@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:19:02 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 15:37:20 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:18:20 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 void	assign_line_h(t_vector *vector, int win_h)
 {
-	vector->line_h = (int)(win_h /  vector->perp_wall_dist);
+	vector->line_h = (int)(win_h / vector->perp_wall_dist);
 }
