@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 18:48:55 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 15:31:31 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,7 @@ int		load_textures_render(t_scene *scene);
 int		load_texture_render(t_scene *scene, t_img *tex, char *path);
 int		get_texture_color(t_img *tex, int x, int y);
 int		get_wall_texture(t_vector *vector);
+
+// Init
+int		init_mlx_win(t_scene *scene);
+void	init_mlx_hooks(t_scene *scene);

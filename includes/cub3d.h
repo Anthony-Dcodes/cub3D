@@ -26,7 +26,9 @@ typedef enum e_error
 	ERR_ARGS,
 	ERR_MAP,
 	ERR_RGB,
-	ERR_TEXTURES
+	ERR_TEXTURES,
+	ERR_MLX_INIT,
+	ERR_MLX_WIN
 	// Bunch more Error codes needed for specific problems
 }	t_error;
 

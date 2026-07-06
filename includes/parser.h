@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:10:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/25 19:06:42 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/06 15:33:18 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "cub3d.h"
 
-void	parse_arguments(t_scene *scene, int argc, char *argv[]);
+int		parse_arguments(t_scene *scene, int argc, char *argv[]);
 
 int		input_validate(int argc, char **argv);
 int		skip_whitespaces(char *s);

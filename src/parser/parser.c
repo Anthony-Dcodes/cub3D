@@ -6,14 +6,14 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:11:42 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 15:07:36 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 15:32:14 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "render.h"
 
-void	parse_arguments(t_scene *scene, int argc, char *argv[])
+int	parse_arguments(t_scene *scene, int argc, char *argv[])
 {
 	static char *worldMap[] = {
     "        1111111111111111111111111",
@@ -52,4 +52,5 @@ void	parse_arguments(t_scene *scene, int argc, char *argv[])
 	scene->tex_paths[SOUTH] = "./textures/wall2.xpm";
 	scene->tex_paths[EAST] = "./textures/wall3.xpm";
 	scene->tex_paths[WEST] = "./textures/wall4.xpm";
+	return (ERR_OK);
 }
