@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_step_side_dist.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 18:17:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 18:17:58 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 15:37:35 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

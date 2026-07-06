@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_delta_dist.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 18:16:52 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 18:19:16 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 15:37:14 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
