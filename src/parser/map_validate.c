@@ -52,8 +52,8 @@ int	check_map_char(t_scene *scene, int x, int y, int *player_count)
 	if (ft_strchr("NSEW", c))
 	{
 		(*player_count)++;
-		scene->player.pos_x = x + 0,5;
-		scene->player.pos_y = y + 0,5;
+		scene->player.pos_x = x + 0.5;
+		scene->player.pos_y = y + 0.5;
 		set_player_dir(&scene->player, c);
 	}
 	return (ERR_OK);
@@ -61,7 +61,7 @@ int	check_map_char(t_scene *scene, int x, int y, int *player_count)
 
 int	flood_fill(t_scene *scene, char **visited, int y, int x)
 {
-	if (y >= scene->map.map_height || x >= (int)ft_strlen(visited[y]) || y < 0 || x < 0)
+	if (y < 0 || y >= scene->map.map_height || x < 0 || x >= (int)ft_strlen(visited[y]))
 		return (1);
 	if (visited[y][x] == ' ')
 		return (1);
@@ -74,12 +74,68 @@ int	flood_fill(t_scene *scene, char **visited, int y, int x)
 			|| flood_fill(scene, visited, y, x + 1));
 }
 
-int	is_empty_line(char *line)
+void	free_visited(char **visited, int count)
 {
 	int	i;
 
-	i = skip_whitespaces(line);
-	if (line == '\n' || line == '\0')
-		return (1);
-	return (0);
+	if (!visited)
+		return ;
+	i = 0;
+	while (i < count)
+	{
+		free(visited[i]);
+		i++;
+	}
+	free(visited);
+}
+
+int	check_map_enclosure(t_scene *scene)
+{
+	char	**visited;
+	int		i;
+	int		result;
+
+	visited = malloc(sizeof(char *) * scene->map.map_height);
+	if (!visited)
+		return (ERR_MALLOC);
+	i = 0;
+	while (i < scene->map.map_height)
+	{
+		visited[i] = ft_strdup(scene->map.map[i]);
+		if (!visited[i])
+			return (free_visited(visited, i), ERR_MALLOC);
+		i++;
+	}
+	result = flood_fill(scene, visited, (int)scene->player.pos_y, (int)scene->player.pos_x);
+	free_visited(visited, scene->map.map_height);
+	if (result != 0)
+		return (printf("Error:\nMap is not enclosed by walls\n"), ERR_MAP);
+	return (ERR_OK);
+}
+
+int	map_validate(t_scene *scene)
+{
+	int	x;
+	int	y;
+	int	player_count;
+
+	player_count = 0;
+	y = -1;
+	while (++y < scene->map.map_height)
+	{
+		x = -1;
+		while (++x < scene->map.map_width)
+		{
+			if (scene->map.map[y][x] != ' ' && scene->map.map[y][x] != '\0')
+			{
+				if (check_map_char(scene, x, y, &player_count) != ERR_OK)
+					return (ERR_MAP);
+			}
+		}
+	}
+	if (player_count != 1)
+		return (printf("Error:\nToo many players"), ERR_MAP);
+	if (check_map_enclosure(scene) != ERR_OK)
+		return (ERR_MAP);
+	return (ERR_OK);
 }

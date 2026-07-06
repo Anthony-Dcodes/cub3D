@@ -37,7 +37,7 @@ void	add_map_node(t_map_node **head, t_map_node *new_node)
 		return ;
 	}
 	current = *head;
-	while (current != NULL)
+	while (current->next != NULL)
 		current = current->next;
 	current->next = new_node;
 }
@@ -84,6 +84,7 @@ int	get_width(t_map_node *head)
 	}
 	return (longest);
 }
+
 char	*pad_line(char *raw_line, int max_width)
 {
 	char	*line;
@@ -93,7 +94,7 @@ char	*pad_line(char *raw_line, int max_width)
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (raw_line[i] != '\0')
+	while (raw_line[i] != '\0' && raw_line[i] != '\n')
 	{
 		line[i] = raw_line[i];
 		i++;
@@ -106,6 +107,7 @@ char	*pad_line(char *raw_line, int max_width)
 	line[i] = '\0';
 	return (line);
 }
+
 int	create_map(t_scene *scene, t_map_node *head)
 {
 	int			i;
@@ -113,7 +115,7 @@ int	create_map(t_scene *scene, t_map_node *head)
 
 	scene->map.map_height = get_height(head);
 	scene->map.map_width = get_width(head);
-	scene->map.map = malloc(sizeof(char) * scene->map.map_height + 1);
+	scene->map.map = malloc(sizeof(char *) * (scene->map.map_height + 1));
 	if (!scene->map.map)
 		return (ERR_MALLOC);
 	i = 0;
@@ -122,11 +124,13 @@ int	create_map(t_scene *scene, t_map_node *head)
 	{
 		scene->map.map[i] = pad_line(current->line, scene->map.map_width);
 		if (!scene->map.map[i])
+		{
+			free_map_array(scene->map.map, i);
+			scene->map.map = NULL;
 			return (ERR_MALLOC);
+		}
 		current = current->next;
 		i++;
 	}
-	scene->map.map[i] == NULL;
-	free_map_list(head);
-	return (ERR_OK);
+	return (scene->map.map[i] = NULL, free_map_list(head), ERR_OK);
 }

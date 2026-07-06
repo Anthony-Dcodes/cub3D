@@ -58,7 +58,6 @@ typedef struct s_map
 {
 	int		map_width; // PARSER max width of the map
 	int		map_height; // PARSER max height of the map
-	int		malloc_count;
 	char	**map; // PARSER
 }	t_map;
 
