@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 18:11:16 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:16:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,27 @@ typedef struct s_vector
 #define ORANGE  0xFF8000
 
 // Keys
-# define KEY_ESC 65307
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-# define KEY_UP 65362
-# define KEY_DOWN 65364
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
+#define KEY_ESC 65307
+#define KEY_LEFT 65361
+#define KEY_RIGHT 65363
+#define KEY_UP 65362
+#define KEY_DOWN 65364
+#define KEY_W 119
+#define KEY_A 97
+#define KEY_S 115
+#define KEY_D 100
 
 // Events
-# define ON_KEYDOWN 2
-# define ON_KEYUP 3
-# define ON_MOUSEDOWN 4
-# define ON_MOUSEUP 5
-# define ON_MOUSEMOVE 6
-# define ON_EXPOSE 12
-# define ON_DESTROY 17
+#define ON_KEYDOWN 2
+#define ON_KEYUP 3
+#define ON_MOUSEDOWN 4
+#define ON_MOUSEUP 5
+#define ON_MOUSEMOVE 6
+#define ON_EXPOSE 12
+#define ON_DESTROY 17
 
-# define MOVE_SPEED 0.2
-# define ROT_SPEED 0.1
+#define MOVE_SPEED 0.2
+#define ROT_SPEED 0.1
 
 // Cleanup
 void	clean_up(t_scene *scene, int exit_status);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/06 18:17:07 by advorace          #+#    #+#             */
+/*   Updated: 2026/07/06 18:17:14 by advorace         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 
 #define SCREEN_WIDTH 1280
@@ -29,7 +41,6 @@ typedef enum e_error
 	ERR_MLX_WIN
 	// Bunch more Error codes needed for specific problems
 }	t_error;
-
 
 typedef struct s_img
 {
