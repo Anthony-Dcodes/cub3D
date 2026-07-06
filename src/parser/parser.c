@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:11:42 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 15:32:14 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:36:44 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	parse_arguments(t_scene *scene, int argc, char *argv[])
 
 	// Starting index: 2,1
 	// DIR = SOUTH
+	scene->map.map_height = argc;
+	scene->map.map = argv;
 	scene->map.map = worldMap;
 	scene->map.map_height = 14;
 	scene->map.map_width = 33;

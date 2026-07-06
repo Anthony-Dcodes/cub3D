@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 15:49:15 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 18:22:16 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:34:00 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	move_player(t_player *player, int keycode)
 void	rotate_player(t_player *player, int keycode)
 {
 	if (keycode == KEY_LEFT)
-		rotate_left(player, keycode);
+		rotate_left(player);
 	else if (keycode == KEY_RIGHT)
-		rotate_right(player, keycode);
+		rotate_right(player);
 }
 
-void	rotate_left(t_player *player, int keycode)
+void	rotate_left(t_player *player)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -63,7 +63,7 @@ void	rotate_left(t_player *player, int keycode)
 		+ player->plane_y * cos(ROT_SPEED);
 }
 
-void	rotate_right(t_player *player, int keycode)
+void	rotate_right(t_player *player)
 {
 	double	old_dir_x;
 	double	old_plane_x;

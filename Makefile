@@ -1,7 +1,7 @@
 NAME = cub3D
 CC = cc
 # Production flags -----MAIN-----
-#CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror
+CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror
 
 
 # Debug Production flags
@@ -9,7 +9,7 @@ CC = cc
 # Testing flags
 #CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes
 # Debug flags
-CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -g# -O0 -fsanitize=address
+#CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -g# -O0 -fsanitize=address
 
 
 LIBFT_DIR = master_lib_ft

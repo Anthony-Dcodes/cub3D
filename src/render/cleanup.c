@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 18:25:40 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:33:15 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 void	clean_up(t_scene *scene, int exit_status)
 {
-	int	i;
+	//int	i;
 
-	i = 0;
+	//i = 0;
 	//if (scene->map.map)
 	//	while (i < scene->map.malloc_count)
 	//	{
