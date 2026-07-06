@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 18:10:29 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:25:40 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	clean_up(t_scene *scene, int exit_status)
 
 void	clean_up_textures(t_scene *scene)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -60,7 +60,7 @@ void	clean_up_textures(t_scene *scene)
 
 void	error_message(int err)
 {
-	if (err == ERR_OK);
+	if (err == ERR_OK)
 		return ;
 	ft_putstr_fd("Error\n", 2);
 	error_render(err);

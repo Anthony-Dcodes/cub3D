@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 18:18:39 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 17:04:35 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:24:26 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 void	assign_wall_x(t_vector *vector, t_scene *scene)
 {
 	if (vector->side == 0)
-		vector->wall_x = scene->player.pos_y + vector->perp_wall_dist * vector->ray_dir_y;
+		vector->wall_x = scene->player.pos_y
+			+ vector->perp_wall_dist * vector->ray_dir_y;
 	else
-		vector->wall_x = scene->player.pos_x + vector->perp_wall_dist * vector->ray_dir_x;
+		vector->wall_x = scene->player.pos_x
+			+ vector->perp_wall_dist * vector->ray_dir_x;
 	vector->wall_x -= floor(vector->wall_x);
 }

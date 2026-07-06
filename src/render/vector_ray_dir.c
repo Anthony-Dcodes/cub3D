@@ -6,14 +6,14 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 18:16:19 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 15:37:33 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:23:49 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "render.h"
 
-void assign_ray_dirs(t_vector *vector, t_player *player)
+void	assign_ray_dirs(t_vector *vector, t_player *player)
 {
 	double	p_dir_x;
 	double	p_dir_y;
