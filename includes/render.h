@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 15:31:31 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 17:02:03 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int		load_textures_render(t_scene *scene);
 int		load_texture_render(t_scene *scene, t_img *tex, char *path);
 int		get_texture_color(t_img *tex, int x, int y);
 int		get_wall_texture(t_vector *vector);
+int		get_texture_xpos(t_scene *scene, t_vector *vector, int wall);
+int		get_texture_ypos(t_scene *scene, t_vector *vector, int y1, int wall);
 
 // Init
 int		init_mlx_win(t_scene *scene);
