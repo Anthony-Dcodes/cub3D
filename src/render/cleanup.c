@@ -6,14 +6,15 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 17:41:54 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:10:29 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include "cub3d.h"
 #include "render.h"
+#include "libft.h"
 
 void	clean_up(t_scene *scene, int exit_status)
 {
@@ -39,6 +40,7 @@ void	clean_up(t_scene *scene, int exit_status)
 		mlx_destroy_display(scene->mlx);
 		free(scene->mlx);
 	}
+	error_message(exit_status);
 	exit(exit_status);
 }
 
@@ -54,4 +56,34 @@ void	clean_up_textures(t_scene *scene)
 		free(scene->tex_paths[i]);
 		++i;
 	}
+}
+
+void	error_message(int err)
+{
+	if (err == ERR_OK);
+		return ;
+	ft_putstr_fd("Error\n", 2);
+	error_render(err);
+	error_parser(err);
+	ft_putstr_fd("\n", 2);
+}
+
+void	error_render(int err)
+{
+	if (err == ERR_TEXTURES)
+		ft_putstr_fd("Mlx failed loading textures into an image.", 2);
+	else if (err == ERR_MLX_INIT)
+		ft_putstr_fd("Mlx failed to initialize.", 2);
+	else if (err == ERR_MLX_WIN)
+		ft_putstr_fd("Mlx failed to create window.", 2);
+}
+
+void	error_parser(int err)
+{
+	if (err == ERR_ARGS)
+		ft_putstr_fd("", 2);
+	else if (err == ERR_MAP)
+		ft_putstr_fd("", 2);
+	else if (err == ERR_RGB)
+		ft_putstr_fd("", 2);
 }

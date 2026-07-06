@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 17:02:03 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:11:16 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ typedef struct s_vector
 // Cleanup
 void	clean_up(t_scene *scene, int exit_status);
 void	clean_up_textures(t_scene *scene);
+void	error_message(int err);
+void	error_render(int err);
+void	error_parser(int err);
 
 // Pixels / render
 int		create_trgb(int t, int r, int g, int b);

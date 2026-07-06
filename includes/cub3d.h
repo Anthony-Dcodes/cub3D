@@ -21,8 +21,6 @@ typedef enum e_error
 {
 	ERR_OK,
 	ERR_MALLOC,
-	ERR_PARSER,
-	ERR_RENDER,
 	ERR_ARGS,
 	ERR_MAP,
 	ERR_RGB,
