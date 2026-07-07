@@ -1,61 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   map_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/30 20:26:07 by msnizek           #+#    #+#             */
-/*   Updated: 2026/06/30 20:26:07 by msnizek          ###   ########.fr       */
+/*   Created: 2026/07/07 19:37:02 by msnizek           #+#    #+#             */
+/*   Updated: 2026/07/07 19:37:02 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "parser.h"
 
-t_map_node	*new_map_node(char *line)
-{
-	t_map_node	*node;
-
-	node = malloc(sizeof(t_map_node));
-	if (!node)
-		return (NULL);
-	node->line = line;
-	node->next = NULL;
-	return (node);
-}
-
-void	add_map_node(t_map_node **head, t_map_node *new_node)
-{
-	t_map_node	*current;
-
-	if (!new_node)
-		return ;
-	if (*head == NULL)
-	{
-		*head = new_node;
-		return ;
-	}
-	current = *head;
-	while (current->next != NULL)
-		current = current->next;
-	current->next = new_node;
-}
-
-void	free_map_list(t_map_node *head)
-{
-	t_map_node	*tmp;
-
-	while (head != NULL)
-	{
-		tmp = head->next;
-		free(head->line);
-		free(head);
-		head = tmp;
-	}
-}
-
-int	get_height(t_map_node *head)
+static int	get_height(t_map_node *head)
 {
 	int	i;
 
@@ -68,7 +25,7 @@ int	get_height(t_map_node *head)
 	return (i);
 }
 
-int	get_width(t_map_node *head)
+static int	get_width(t_map_node *head)
 {
 	int	longest;
 	int	current;
@@ -85,7 +42,7 @@ int	get_width(t_map_node *head)
 	return (longest);
 }
 
-char	*pad_line(char *raw_line, int max_width)
+static char	*pad_line(char *raw_line, int max_width)
 {
 	char	*line;
 	int		i;

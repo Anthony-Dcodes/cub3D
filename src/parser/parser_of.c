@@ -6,7 +6,7 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 17:01:26 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/06 22:31:29 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/07 21:40:42 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	parse_config(int fd, t_scene *scene)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (printf("Error:\nMissing configuration\n"), ERR_MAP);
+			return (ERR_MAP);
 		type = identify_elements(line);
 		err = check_type(type, scene, line, &elem_loaded);
 		if (err != ERR_OK)
@@ -41,7 +41,7 @@ static int	process_map_line(char *line, t_map_node **head, int *started)
 	if (identify_elements(line) == EMPTY)
 	{
 		if (*started)
-			return (printf("Error:\nEmpty line inside or after map\n"), ERR_MAP);
+			return (ERR_MAP);
 		free(line);
 	}
 	else
@@ -71,56 +71,24 @@ static int	parse_map_lines(int fd, t_scene *scene)
 			return (free(line), free_map_list(map_head), err);
 	}
 	if (!map_started || !map_head)
-		return (printf("Error:\nMap is missing in the file\n"), ERR_MAP);
+		return (ERR_MAP);
 	return (create_map(scene, map_head));
 }
 
-int	parse_cub_file(char *path, t_scene *scene)
+static int	parse_file(char *path, t_scene *scene)
 {
 	int		fd;
 	int		err;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (printf("Error\nCannot open the file\n"), ERR_ARGS);
+		return (ERR_ARGS);
 	err = parse_config(fd, scene);
 	if (err != ERR_OK)
 		return (close(fd), err);
 	err = parse_map_lines(fd, scene);
 	close(fd);
 	return (err);
-}
-
-void	free_textures(t_scene *scene)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (scene->tex_paths[i] != NULL)
-		{
-			free(scene->tex_paths[i]);
-			scene->tex_paths[i] = NULL;
-		}
-		i++;
-	}
-}
-
-void	free_map_array(char **map_array, int size)
-{
-	int	i;
-
-	if (!map_array)
-		return ;
-	i = 0;
-	while (i < size)
-	{
-		if (map_array[i])
-			free(map_array[i]);
-		i++;
-	}
-	free(map_array);
 }
 
 int	parser(t_scene *scene, int argc, char *argv[])
@@ -130,7 +98,7 @@ int	parser(t_scene *scene, int argc, char *argv[])
 	err = input_validate(argc, argv);
 	if (err != ERR_OK)
 		return (err);
-	err = parse_cub_file(argv[1], scene);
+	err = parse_file(argv[1], scene);
 	if (err != ERR_OK)
 		return (free_textures(scene), err);
 	err = map_validate(scene);

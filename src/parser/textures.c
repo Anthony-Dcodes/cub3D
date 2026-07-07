@@ -12,7 +12,22 @@
 
 #include "cub3d.h"
 
-int	parse_color(char *line, int i, int *color_dest)
+static int	get_single_rgb(char *line, int *i)
+{
+	int	val;
+
+	if (!ft_isdigit(line[*i]))
+		return (-1);
+	val = 0;
+	while (ft_isdigit(line[*i]))
+	{
+		val = (val * 10) + (line[*i] - '0');
+		(*i)++;
+	}
+	return (val);
+}
+
+static int	parse_color(char *line, int i, int *color_dest)
 {
 	int	r;
 	int	g;
@@ -36,7 +51,7 @@ int	parse_color(char *line, int i, int *color_dest)
 	return (ERR_OK);
 }
 
-int	load_texture(int type, t_scene *scene, char *line, int *elem_loaded)
+static int	load_texture(int type, t_scene *scene, char *line, int *elem_loaded)
 {
 	int	fd;
 
@@ -57,7 +72,7 @@ int	load_texture(int type, t_scene *scene, char *line, int *elem_loaded)
 	return (ERR_OK);
 }
 
-int	load_color(int type, t_scene *scene, char *line, int *elem_loaded)
+static int	load_color(int type, t_scene *scene, char *line, int *elem_loaded)
 {
 	int	err;
 
@@ -82,4 +97,3 @@ int	check_type(int type, t_scene *scene, char *line, int *elem_loaded)
 	else
 		return (UNKNOWN);
 }
-

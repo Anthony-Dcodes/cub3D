@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_validate.c                                   :+:      :+:    :+:   */
+/*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 22:09:53 by msnizek           #+#    #+#             */
-/*   Updated: 2026/06/21 22:09:53 by msnizek          ###   ########.fr       */
+/*   Created: 2026/07/07 20:55:10 by msnizek           #+#    #+#             */
+/*   Updated: 2026/07/07 20:55:10 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	input_validate(int argc, char **argv)
+char	*parse_texture_path(char *line, int i)
 {
-	int		fd;
+	int		start;
 	int		len;
+	int		check;
 	char	*path;
 
-	if (argc != 2)
-		return (ERR_ARGS);
-	path = argv[1];
-	len = ft_strlen(path);
-	if (len < 4 || ft_strncmp(path + len - 4, ".cub", 4) != 0)
-		return (ERR_ARGS);
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		return (ERR_ARGS);
-	close(fd);
-	return (ERR_OK);
+	i += skip_whitespaces(line + i);
+	len = 0;
+	start = i;
+	while (line[i] != '\0' && line[i] != '\n' && line[i] != ' ')
+	{
+		len++;
+		i++;
+	}
+	check = i + skip_whitespaces(line + i);
+	if (line[check] != '\n' && line[check] != '\0')
+		return (NULL);
+	path = ft_substr(line, start, len);
+	return (path);
 }

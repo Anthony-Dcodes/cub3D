@@ -6,7 +6,7 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 16:58:41 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/06 22:31:31 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/07 21:40:45 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,43 +22,6 @@ int	skip_whitespaces(char *s)
 	return (i);
 }
 
-char	*parse_texture_path(char *line, int i)
-{
-	int		start;
-	int		len;
-	int		check;
-	char	*path;
-
-	i += skip_whitespaces(line + i);
-	len = 0;
-	start = i;
-	while (line[i] != '\0' && line[i] != '\n' && line[i] != ' ')
-	{
-		len++;
-		i++;
-	}
-	check = i + skip_whitespaces(line + i);
-	if (line[check] != '\n' && line[check] != '\0')
-		return (NULL);
-	path = ft_substr(line, start, len);
-	return (path);
-}
-
-int	get_single_rgb(char *line, int *i)
-{
-	int	val;
-
-	if (!ft_isdigit(line[*i]))
-		return (-1);
-	val = 0;
-	while (ft_isdigit(line[*i]))
-	{
-		val = (val * 10) + (line[*i] - '0');
-		(*i)++;
-	}
-	return (val);
-}
-
 static int	is_empty_line(char *line)
 {
 	int	i;
@@ -68,6 +31,7 @@ static int	is_empty_line(char *line)
 		return (1);
 	return (0);
 }
+
 int	identify_elements(char *line)
 {
 	int	i;
@@ -88,4 +52,33 @@ int	identify_elements(char *line)
 	else if (ft_strncmp(line + i, "C", 1) == 0)
 		return (CEILING);
 	return (UNKNOWN);
+}
+
+t_map_node	*new_map_node(char *line)
+{
+	t_map_node	*node;
+
+	node = malloc(sizeof(t_map_node));
+	if (!node)
+		return (NULL);
+	node->line = line;
+	node->next = NULL;
+	return (node);
+}
+
+void	add_map_node(t_map_node **head, t_map_node *new_node)
+{
+	t_map_node	*current;
+
+	if (!new_node)
+		return ;
+	if (*head == NULL)
+	{
+		*head = new_node;
+		return ;
+	}
+	current = *head;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new_node;
 }
