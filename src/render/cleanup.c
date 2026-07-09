@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 18:33:15 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/09 12:49:50 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,15 @@ void	error_render(int err)
 void	error_parser(int err)
 {
 	if (err == ERR_ARGS)
-		ft_putstr_fd("", 2);
+		ft_putstr_fd("Error\nInvalid arguments. Usage: ./cub3D <map.cub>\n",
+			2);
 	else if (err == ERR_MAP)
-		ft_putstr_fd("", 2);
+		ft_putstr_fd("Error\nInvalid map configuration or missing map.\n", 2);
 	else if (err == ERR_RGB)
-		ft_putstr_fd("", 2);
+		ft_putstr_fd("Error\nInvalid RGB color format for floor or ceiling.\n",
+			2);
+	else if (err == ERR_TEXTURES)
+		ft_putstr_fd("Error\nInvalid texture path or loading failure.\n", 2);
+	else if (err == ERR_MALLOC)
+		ft_putstr_fd("Error\nMemory allocation failed (malloc).\n", 2);
 }
