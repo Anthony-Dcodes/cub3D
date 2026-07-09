@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
 
 static void	set_vec(double *x, double *y, double val_x, double val_y)
 {

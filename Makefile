@@ -25,6 +25,15 @@ SRCS_PARSER = src/parser
 
 SRCS = \
 	src/main.c \
+	$(SRCS_PARSER)/input_validate.c \
+	$(SRCS_PARSER)/texture_utils.c \
+	$(SRCS_PARSER)/textures.c \
+	$(SRCS_PARSER)/map_create.c \
+	$(SRCS_PARSER)/map_validate_utils.c \
+	$(SRCS_PARSER)/map_validate.c \
+	$(SRCS_PARSER)/parser_utils.c \
+	$(SRCS_PARSER)/parser_clean_up.c \
+	$(SRCS_PARSER)/parser_of.c \
 	$(SRCS_RENDER)/cleanup.c \
 	$(SRCS_RENDER)/pixel_utils.c \
 	$(SRCS_RENDER)/render_scene.c \

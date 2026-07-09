@@ -6,12 +6,13 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 17:01:26 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/09 12:36:07 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/09 15:01:11 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
+#include "get_next_line.h"
 
 static int	parse_config(int fd, t_scene *scene)
 {
