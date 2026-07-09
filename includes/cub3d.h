@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 18:17:07 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 18:17:14 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/09 15:24:22 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef enum e_error
 	ERR_MAP,
 	ERR_RGB,
 	ERR_TEXTURES,
+	ERR_PARSER_TEX,
 	ERR_MLX_INIT,
 	ERR_MLX_WIN
 	// Bunch more Error codes needed for specific problems

@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 #include "parser.h"
+#include <stdio.h>
 
 static int	get_height(t_map_node *head)
 {
@@ -72,7 +73,7 @@ int	create_map(t_scene *scene, t_map_node *head)
 	t_map_node	*current;
 
 	scene->map.map_height = get_height(head);
-	scene->map.map_width = get_width(head);
+	scene->map.map_width = get_width(head) - 1;
 	scene->map.map = malloc(sizeof(char *) * (scene->map.map_height + 1));
 	if (!scene->map.map)
 		return (ERR_MALLOC);

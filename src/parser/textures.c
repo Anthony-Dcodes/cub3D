@@ -57,16 +57,16 @@ static int	load_texture(int type, t_scene *scene, char *line, int *elem_loaded)
 	int	fd;
 
 	if (scene->tex_paths[type] != NULL)
-		return (ERR_TEXTURES);
+		return (ERR_PARSER_TEX);
 	scene->tex_paths[type] = parse_texture_path(line, 2);
 	if (!scene->tex_paths[type])
-		return (ERR_TEXTURES);
+		return (ERR_PARSER_TEX);
 	fd = open(scene->tex_paths[type], O_RDONLY);
 	if (fd < 0)
 	{
 		free(scene->tex_paths[type]);
 		scene->tex_paths[type] = NULL;
-		return (ERR_TEXTURES);
+		return (ERR_PARSER_TEX);
 	}
 	close(fd);
 	(*elem_loaded)++;

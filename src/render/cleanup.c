@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/09 15:16:01 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/09 15:26:30 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	clean_up(t_scene *scene, int exit_status)
 		}
 	free(scene->map.map);
 	scene->map.map = NULL;
-	if (!scene->mlx)
-		exit(exit_status);
 	clean_up_textures(scene);
 	if (scene->frame.img)
 		mlx_destroy_image(scene->mlx, scene->frame.img);
@@ -87,7 +85,7 @@ void	error_parser(int err)
 		ft_putstr_fd("Invalid map configuration or missing map.", 2);
 	else if (err == ERR_RGB)
 		ft_putstr_fd("Invalid RGB color format for floor or ceiling.", 2);
-	else if (err == ERR_TEXTURES)
+	else if (err == ERR_PARSER_TEX)
 		ft_putstr_fd("Invalid texture path or loading failure.", 2);
 	else if (err == ERR_MALLOC)
 		ft_putstr_fd("Memory allocation failed (malloc).", 2);

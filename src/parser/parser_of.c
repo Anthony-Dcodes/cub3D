@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_of.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 17:01:26 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/09 15:01:11 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/09 15:38:55 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,7 @@ int	parser(t_scene *scene, int argc, char *argv[])
 		free_textures(scene);
 		return (err);
 	}
+	scene->win_h = SCREEN_HEIGHT;
+	scene->win_w= SCREEN_WIDTH;
 	return (ERR_OK);
 }

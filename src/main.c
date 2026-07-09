@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:40:48 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 17:25:32 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/09 15:18:20 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char *argv[])
 
 	ret = ERR_OK;
 	ft_bzero(&scene, sizeof(scene));
-	ret = parse_arguments(&scene, argc, argv);
+	ret = parser(&scene, argc, argv);
 	if (ret != ERR_OK)
 		clean_up(&scene, ret);
 	ret = init_mlx_win(&scene);
