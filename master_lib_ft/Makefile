@@ -30,6 +30,7 @@ SRCS = \
 	$(LIBFT_SRC_DIR)/ft_lstsize_bonus.c \
 	$(LIBFT_SRC_DIR)/ft_memchr.c \
 	$(LIBFT_SRC_DIR)/ft_memcmp.c \
+	$(LIBFT_SRC_DIR)/ft_memcpy.c \
 	$(LIBFT_SRC_DIR)/ft_memmove.c \
 	$(LIBFT_SRC_DIR)/ft_memset.c \
 	$(LIBFT_SRC_DIR)/ft_putchar_fd.c \

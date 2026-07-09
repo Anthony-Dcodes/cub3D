@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
 
 char	*parse_texture_path(char *line, int i)
 {
