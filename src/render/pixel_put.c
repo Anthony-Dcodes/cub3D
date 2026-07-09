@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_utils.c                                      :+:      :+:    :+:   */
+/*   pixel_put.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:05:10 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/02 15:14:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 17:02:24 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 	int	final_color;
 	int	tex_x;
 	int	tex_y;
-	int	width;
-	int	heigh;
+	int	wall;
 
 	if (y1 < vector->draw_start)
 		final_color = scene->ceiling_color;
@@ -41,16 +40,10 @@ void	put_scene_pixel(t_scene *scene, int x1, int y1, t_vector *vector)
 		final_color = scene->floor_color;
 	else
 	{
-		width = scene->texture[NORTH].width;
-		heigh = scene->texture[NORTH].height;
-		tex_x = (int)(vector->map_x * width);
-		if (tex_x >= width)
-			tex_x = width - 1;
-		tex_y = 
-		final_color = get_texture_color(&scene->texture[NORTH], x1, y1);
-		//final_color = MAGENTA;
-		//if (vector->side == 1)
-		//	final_color = BLUE;
+		wall = get_wall_texture(vector);
+		tex_x = get_texture_xpos(scene, vector, wall);
+		tex_y = get_texture_ypos(scene, vector, y1, wall);
+		final_color = get_texture_color(&scene->texture[wall], tex_x, tex_y);
 	}
 	my_mlx_pixel_put(scene, x1, y1, final_color);
 }

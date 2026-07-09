@@ -1,7 +1,7 @@
 NAME = cub3D
 CC = cc
 # Production flags -----MAIN-----
-#CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror
+CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -Wall -Wextra -Werror
 
 
 # Debug Production flags
@@ -9,7 +9,7 @@ CC = cc
 # Testing flags
 #CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes
 # Debug flags
-CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -g -O0 -fsanitize=address
+#CFLAGS = -Iminilibx-linux -Iincludes -Imaster_lib_ft/includes -g# -O0 -fsanitize=address
 
 
 LIBFT_DIR = master_lib_ft
@@ -35,13 +35,22 @@ SRCS = \
 	$(SRCS_PARSER)/parser_clean_up.c \
 	$(SRCS_PARSER)/parser_of.c \
 	$(SRCS_RENDER)/cleanup.c \
-	$(SRCS_RENDER)/pixel_utils.c \
+	$(SRCS_RENDER)/pixel_put.c \
 	$(SRCS_RENDER)/render_scene.c \
-	$(SRCS_RENDER)/dda_algo.c \
-	$(SRCS_RENDER)/line_calc.c \
-	$(SRCS_RENDER)/vector_calc.c \
+	$(SRCS_RENDER)/vector_dda.c \
+	$(SRCS_RENDER)/vector_delta_dist.c \
+	$(SRCS_RENDER)/vector_map_pos.c \
+	$(SRCS_RENDER)/vector_perp_wall_dist.c \
+	$(SRCS_RENDER)/vector_ray_dir.c \
+	$(SRCS_RENDER)/vector_step_side_dist.c \
+	$(SRCS_RENDER)/vector_wall_x.c \
+	$(SRCS_RENDER)/vector_draw_start_end.c \
+	$(SRCS_RENDER)/vector_line.c \
 	$(SRCS_RENDER)/event_hooks.c \
-	$(SRCS_RENDER)/load_textures.c \
+	$(SRCS_RENDER)/textures_load.c \
+	$(SRCS_RENDER)/textures_get.c \
+	$(SRCS_RENDER)/player_movement.c \
+	$(SRCS_RENDER)/init_mlx_win_hooks.c \
 	$(SRCS_PARSER)/parser.c
 
 
