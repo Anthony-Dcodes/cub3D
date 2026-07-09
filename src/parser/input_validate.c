@@ -19,14 +19,14 @@ int	input_validate(int argc, char **argv)
 	char	*path;
 
 	if (argc != 2)
-		return (printf("Error\nWrong number of argument\n"), ERR_ARGS);
+		return (ERR_ARGS);
 	path = argv[1];
 	len = ft_strlen(path);
 	if (len < 4 || ft_strncmp(path + len - 4, ".cub", 4) != 0)
-		return (printf("Error\nFile must have a .cub extension"), ERR_ARGS);
+		return (ERR_ARGS);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (printf("Error\nCannot open the file\n"), ERR_ARGS);
+		return (ERR_ARGS);
 	close(fd);
 	return (ERR_OK);
 }

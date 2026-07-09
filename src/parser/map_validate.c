@@ -12,74 +12,29 @@
 
 #include "cub3d.h"
 
-void	set_vec(double *x, double *y, double val_x, double val_y)
+int	map_validate(t_scene *scene)
 {
-	*x = val_x;
-	*y = val_y;
-}
+	int	x;
+	int	y;
+	int	player_count;
 
-void	set_player_dir(t_player *player, char c)
-{
-	if (c == 'N')
+	player_count = 0;
+	y = -1;
+	while (++y < scene->map.map_height)
 	{
-		set_vec(&player->dir_x, &player->dir_y, 0, -1);
-		set_vec(&player->plane_x, &player->plane_y, 0.66, 0);
+		x = -1;
+		while (++x < scene->map.map_width)
+		{
+			if (scene->map.map[y][x] != ' ' && scene->map.map[y][x] != '\0')
+			{
+				if (check_map_char(scene, x, y, &player_count) != ERR_OK)
+					return (ERR_MAP);
+			}
+		}
 	}
-	else if (c == 'S')
-	{
-		set_vec(&player->dir_x, &player->dir_y, 0, 1);
-		set_vec(&player->plane_x, &player->plane_y, -0.66, 0);
-	}
-	else if (c == 'E')
-	{
-		set_vec(&player->dir_x, &player->dir_y, 1, 0);
-		set_vec(&player->plane_x, &player->plane_y, 0, 0.66);
-	}
-	else if (c == 'W')
-	{
-		set_vec(&player->dir_x, &player->dir_y, -1, 0);
-		set_vec(&player->plane_x, &player->plane_y, 0, -0.66);
-	}
-}
-
-int	check_map_char(t_scene *scene, int x, int y, int *player_count)
-{
-	char	c;
-
-	c = scene->map.map[y][x];
-	if (!ft_strchr("01NSEW ", c))
-		return (printf("Error\nWrong character in map"), ERR_MAP);
-	if (ft_strchr("NSEW", c))
-	{
-		(*player_count)++;
-		scene->player.pos_x = x + 0,5;
-		scene->player.pos_y = y + 0,5;
-		set_player_dir(&scene->player, c);
-	}
+	if (player_count != 1)
+		return (ERR_MAP);
+	if (check_map_enclosure(scene) != ERR_OK)
+		return (ERR_MAP);
 	return (ERR_OK);
-}
-
-int	flood_fill(t_scene *scene, char **visited, int y, int x)
-{
-	if (y >= scene->map.map_height || x >= (int)ft_strlen(visited[y]) || y < 0 || x < 0)
-		return (1);
-	if (visited[y][x] == ' ')
-		return (1);
-	if (scene->map.map[y][x] == '1' || visited[y][x] == 'V')
-		return (0);
-	visited[y][x] = 'V';
-	return (flood_fill(scene, visited, y - 1, x)
-			|| flood_fill(scene, visited, y + 1, x)
-			|| flood_fill(scene, visited, y, x - 1)
-			|| flood_fill(scene, visited, y, x + 1));
-}
-
-int	is_empty_line(char *line)
-{
-	int	i;
-
-	i = skip_whitespaces(line);
-	if (line == '\n' || line == '\0')
-		return (1);
-	return (0);
 }
