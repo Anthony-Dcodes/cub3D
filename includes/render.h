@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 18:34:20 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/09 16:31:55 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,7 @@ int		handle_window_close(void *param);
 // Player movement
 void	move_player(t_player *player, int keycode);
 void	rotate_player(t_player *player, int keycode);
-void	rotate_left(t_player *player);
-void	rotate_right(t_player *player);
+void	rotate(t_player *player, double rotate_speed);
 
 // Textures
 int		load_textures_render(t_scene *scene);
