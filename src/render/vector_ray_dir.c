@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_ray_dir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/15 11:40:48 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 17:25:32 by advorace         ###   ########.fr       */
+/*   Created: 2026/07/02 18:16:19 by advorace          #+#    #+#             */
+/*   Updated: 2026/07/06 18:23:49 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stddef.h>
 #include "cub3d.h"
 #include "render.h"
-#include "parser.h"
-#include "libft.h"
 
-int	main(int argc, char *argv[])
+void	assign_ray_dirs(t_vector *vector, t_player *player)
 {
-	t_scene	scene;
-	int		ret;
+	double	p_dir_x;
+	double	p_dir_y;
+	double	p_plane_x;
+	double	p_plane_y;
 
-	ret = ERR_OK;
-	ft_bzero(&scene, sizeof(scene));
-	ret = parse_arguments(&scene, argc, argv);
-	if (ret != ERR_OK)
-		clean_up(&scene, ret);
-	ret = init_mlx_win(&scene);
-	if (ret != ERR_OK)
-		clean_up(&scene, ret);
-	init_mlx_hooks(&scene);
-	mlx_loop(scene.mlx);
-	return (ERR_OK);
+	p_dir_x = player->dir_x;
+	p_dir_y = player->dir_y;
+	p_plane_x = player->plane_x;
+	p_plane_y = player->plane_y;
+	vector->ray_dir_x = p_dir_x + p_plane_x * vector->camera_x;
+	vector->ray_dir_y = p_dir_y + p_plane_y * vector->camera_x;
 }

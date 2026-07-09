@@ -13,7 +13,7 @@
 #include "cub3d.h"
 #include "render.h"
 
-void	parse_arguments(t_scene *scene, int argc, char *argv[])
+int	parse_arguments(t_scene *scene, int argc, char *argv[])
 {
 	static char *worldMap[] = {
     "        1111111111111111111111111",
@@ -35,6 +35,8 @@ void	parse_arguments(t_scene *scene, int argc, char *argv[])
 
 	// Starting index: 2,1
 	// DIR = SOUTH
+	scene->map.map_height = argc;
+	scene->map.map = argv;
 	scene->map.map = worldMap;
 	scene->map.map_height = 14;
 	scene->map.map_width = 33;
@@ -52,5 +54,6 @@ void	parse_arguments(t_scene *scene, int argc, char *argv[])
 	scene->tex_paths[SOUTH] = "./textures/wall2.xpm";
 	scene->tex_paths[EAST] = "./textures/wall3.xpm";
 	scene->tex_paths[WEST] = "./textures/wall4.xpm";
+	return (ERR_OK);
 }
 

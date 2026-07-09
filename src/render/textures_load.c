@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_textures.c                                    :+:      :+:    :+:   */
+/*   textures_load.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 14:14:06 by advorace          #+#    #+#             */
-/*   Updated: 2026/06/30 15:02:43 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:18:48 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,30 @@
 int	load_textures_render(t_scene *scene)
 {
 	int	ret;
+	int	i;
 
-	ret = load_texture_render(scene, &scene->texture[NORTH], scene->tex_paths[NORTH]);
-	if (ret != ERR_OK)
-		exit(1);
-	ret = load_texture_render(scene, &scene->texture[SOUTH], scene->tex_paths[SOUTH]);
-	if (ret != ERR_OK)
-		exit(1);
-	ret = load_texture_render(scene, &scene->texture[EAST], scene->tex_paths[EAST]);
-	if (ret != ERR_OK)
-		exit(1);
-	ret = load_texture_render(scene, &scene->texture[WEST], scene->tex_paths[WEST]);
-	if (ret != ERR_OK)
-		exit(1);
+	ret = ERR_OK;
+	i = 0;
+	while (i < 4)
+	{
+		ret = load_texture_render(scene, &scene->texture[i],
+				scene->tex_paths[i]);
+		if (ret != ERR_OK)
+			return (ret);
+		++i;
+	}
 	return (ERR_OK);
 }
 
 int	load_texture_render(t_scene *scene, t_img *tex, char *path)
 {
 	tex->img = mlx_xpm_file_to_image(scene->mlx, path,
-		&tex->width, &tex->height);
+			&tex->width, &tex->height);
 	if (!tex->img)
 	{
 		return (ERR_TEXTURES);
 	}
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
-		&tex->line_len, &tex->endian);
+			&tex->line_len, &tex->endian);
 	return (ERR_OK);
-}
-
-int	get_texture_color(t_img *tex, int x, int y)
-{
-	char	*pixel;
-
-	pixel = tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
-	return (*(unsigned int *) pixel);
 }

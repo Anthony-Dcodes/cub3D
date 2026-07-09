@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_wall_x.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/15 11:40:48 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 17:25:32 by advorace         ###   ########.fr       */
+/*   Created: 2026/07/02 18:18:39 by advorace          #+#    #+#             */
+/*   Updated: 2026/07/06 18:24:26 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stddef.h>
 #include "cub3d.h"
 #include "render.h"
-#include "parser.h"
-#include "libft.h"
+#include <math.h>
 
-int	main(int argc, char *argv[])
+/*
+	side == 0
+		hit an E/W wall (vertical)
+	side == 1
+		hit a N/S wall (horizontal)
+	keep only the fractional part (0.0-1.0)
+*/
+
+void	assign_wall_x(t_vector *vector, t_scene *scene)
 {
-	t_scene	scene;
-	int		ret;
-
-	ret = ERR_OK;
-	ft_bzero(&scene, sizeof(scene));
-	ret = parse_arguments(&scene, argc, argv);
-	if (ret != ERR_OK)
-		clean_up(&scene, ret);
-	ret = init_mlx_win(&scene);
-	if (ret != ERR_OK)
-		clean_up(&scene, ret);
-	init_mlx_hooks(&scene);
-	mlx_loop(scene.mlx);
-	return (ERR_OK);
+	if (vector->side == 0)
+		vector->wall_x = scene->player.pos_y
+			+ vector->perp_wall_dist * vector->ray_dir_y;
+	else
+		vector->wall_x = scene->player.pos_x
+			+ vector->perp_wall_dist * vector->ray_dir_x;
+	vector->wall_x -= floor(vector->wall_x);
 }

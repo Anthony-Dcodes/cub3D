@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_map_pos.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/15 11:40:48 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 17:25:32 by advorace         ###   ########.fr       */
+/*   Created: 2026/07/02 18:17:13 by advorace          #+#    #+#             */
+/*   Updated: 2026/07/06 18:25:08 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stddef.h>
+#include <stdio.h>
 #include "cub3d.h"
 #include "render.h"
-#include "parser.h"
-#include "libft.h"
 
-int	main(int argc, char *argv[])
+// Get current posstion on the map
+void	assign_map_pos(t_vector *vector, t_player *player)
 {
-	t_scene	scene;
-	int		ret;
-
-	ret = ERR_OK;
-	ft_bzero(&scene, sizeof(scene));
-	ret = parse_arguments(&scene, argc, argv);
-	if (ret != ERR_OK)
-		clean_up(&scene, ret);
-	ret = init_mlx_win(&scene);
-	if (ret != ERR_OK)
-		clean_up(&scene, ret);
-	init_mlx_hooks(&scene);
-	mlx_loop(scene.mlx);
-	return (ERR_OK);
+	printf("player posx: %f, posy%f, dirx: %f, diry %f \n",
+		player->pos_x, player->pos_y, player->dir_x, player->dir_y);
+	vector->map_x = (int)player->pos_x;
+	vector->map_y = (int)player->pos_y;
 }
