@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
 
 static int	get_height(t_map_node *head)
 {

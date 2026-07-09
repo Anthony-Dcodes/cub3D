@@ -6,11 +6,12 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 17:01:26 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/07 23:36:46 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/09 12:36:07 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
 
 static int	parse_config(int fd, t_scene *scene)
 {
@@ -57,18 +58,20 @@ static int	process_map_line(char *line, t_map_node **head, int *started)
 
 static int	parse_map_lines(int fd, t_scene *scene)
 {
-	char	*line;
-	int		map_started;
-	int		err;
+	char		*line;
+	int			map_started;
+	int			err;
 	t_map_node	*map_head;
 
 	map_started = 0;
 	map_head = NULL;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		err = process_map_line(line, &map_head, &map_started);
 		if (err != ERR_OK)
 			return (free(line), free_map_list(map_head), err);
+		line = get_next_line(fd);
 	}
 	if (!map_started || !map_head)
 		return (ERR_MAP);

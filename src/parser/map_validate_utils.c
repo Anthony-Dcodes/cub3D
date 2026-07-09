@@ -61,7 +61,8 @@ int	check_map_char(t_scene *scene, int x, int y, int *player_count)
 
 static int	flood_fill(t_scene *scene, char **visited, int y, int x)
 {
-	if (y < 0 || y >= scene->map.map_height || x < 0 || x >= (int)ft_strlen(visited[y]))
+	if (y < 0 || y >= scene->map.map_height || x < 0
+		|| x >= (int)ft_strlen(visited[y]))
 		return (1);
 	if (visited[y][x] == ' ')
 		return (1);
@@ -69,9 +70,9 @@ static int	flood_fill(t_scene *scene, char **visited, int y, int x)
 		return (0);
 	visited[y][x] = 'V';
 	return (flood_fill(scene, visited, y - 1, x)
-			|| flood_fill(scene, visited, y + 1, x)
-			|| flood_fill(scene, visited, y, x - 1)
-			|| flood_fill(scene, visited, y, x + 1));
+		|| flood_fill(scene, visited, y + 1, x)
+		|| flood_fill(scene, visited, y, x - 1)
+		|| flood_fill(scene, visited, y, x + 1));
 }
 
 int	check_map_enclosure(t_scene *scene)
@@ -91,7 +92,8 @@ int	check_map_enclosure(t_scene *scene)
 			return (free_visited(visited, i), ERR_MALLOC);
 		i++;
 	}
-	result = flood_fill(scene, visited, (int)scene->player.pos_y, (int)scene->player.pos_x);
+	result = flood_fill(scene, visited, (int)scene->player.pos_y,
+			(int)scene->player.pos_x);
 	free_visited(visited, scene->map.map_height);
 	if (result != 0)
 		return (ERR_MAP);

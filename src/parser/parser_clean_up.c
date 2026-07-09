@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
 
 void	free_map_list(t_map_node *head)
 {

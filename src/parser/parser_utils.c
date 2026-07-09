@@ -6,11 +6,12 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 16:58:41 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/07 23:36:49 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/09 12:19:57 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
 
 int	skip_whitespaces(char *s)
 {
