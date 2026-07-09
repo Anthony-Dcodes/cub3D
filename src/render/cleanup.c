@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/09 12:49:50 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/09 15:16:01 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@
 
 void	clean_up(t_scene *scene, int exit_status)
 {
-	//int	i;
+	int	i;
 
-	//i = 0;
-	//if (scene->map.map)
-	//	while (i < scene->map.malloc_count)
-	//	{
-	//		free(scene->map.map[i]);
-	//		++i;
-	//	}
-	//free(scene->map.map);
+	i = 0;
+	if (scene->map.map)
+		while (i < scene->map.map_height)
+		{
+			free(scene->map.map[i]);
+			++i;
+		}
+	free(scene->map.map);
+	scene->map.map = NULL;
 	if (!scene->mlx)
 		exit(exit_status);
 	clean_up_textures(scene);
@@ -81,15 +82,13 @@ void	error_render(int err)
 void	error_parser(int err)
 {
 	if (err == ERR_ARGS)
-		ft_putstr_fd("Error\nInvalid arguments. Usage: ./cub3D <map.cub>\n",
-			2);
+		ft_putstr_fd("Invalid arguments. Usage: ./cub3D <map.cub>", 2);
 	else if (err == ERR_MAP)
-		ft_putstr_fd("Error\nInvalid map configuration or missing map.\n", 2);
+		ft_putstr_fd("Invalid map configuration or missing map.", 2);
 	else if (err == ERR_RGB)
-		ft_putstr_fd("Error\nInvalid RGB color format for floor or ceiling.\n",
-			2);
+		ft_putstr_fd("Invalid RGB color format for floor or ceiling.", 2);
 	else if (err == ERR_TEXTURES)
-		ft_putstr_fd("Error\nInvalid texture path or loading failure.\n", 2);
+		ft_putstr_fd("Invalid texture path or loading failure.", 2);
 	else if (err == ERR_MALLOC)
-		ft_putstr_fd("Error\nMemory allocation failed (malloc).\n", 2);
+		ft_putstr_fd("Memory allocation failed (malloc).", 2);
 }
