@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/09 15:26:30 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/12 16:57:39 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	clean_up(t_scene *scene, int exit_status)
 
 	i = 0;
 	if (scene->map.map)
+	{
 		while (i < scene->map.map_height)
 		{
 			free(scene->map.map[i]);
 			++i;
 		}
+	}
 	free(scene->map.map);
 	scene->map.map = NULL;
 	clean_up_textures(scene);
