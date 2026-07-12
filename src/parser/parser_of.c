@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_of.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 17:01:26 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/09 15:38:55 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/12 14:34:47 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	parse_config(int fd, t_scene *scene)
 		type = identify_elements(line);
 		err = check_type(type, scene, line, &elem_loaded);
 		if (err != ERR_OK)
-			return (free(line), ERR_TEXTURES);
+			return (free(line), err);
 		free(line);
 	}
 	return (ERR_OK);
@@ -98,7 +98,13 @@ static int	parse_file(char *path, t_scene *scene)
 int	parser(t_scene *scene, int argc, char *argv[])
 {
 	int	err;
+	int	i;
 
+	i = 0;
+	while (i < 4)
+		scene->tex_paths[i++] = NULL;
+	scene->floor_color = -1;
+	scene->ceiling_color = -1;
 	err = input_validate(argc, argv);
 	if (err != ERR_OK)
 		return (err);
@@ -113,7 +119,5 @@ int	parser(t_scene *scene, int argc, char *argv[])
 		free_textures(scene);
 		return (err);
 	}
-	scene->win_h = SCREEN_HEIGHT;
-	scene->win_w= SCREEN_WIDTH;
-	return (ERR_OK);
+	return (scene->win_h = SCREEN_HEIGHT, scene->win_w= SCREEN_WIDTH, ERR_OK);
 }

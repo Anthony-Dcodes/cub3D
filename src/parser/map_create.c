@@ -32,11 +32,12 @@ static int	get_width(t_map_node *head)
 	int	longest;
 	int	current;
 
-	current = 0;
 	longest = 0;
 	while (head)
 	{
 		current = ft_strlen(head->line);
+		if (current > 0 && head->line[current - 1] == '\n')
+			current--;
 		if (longest < current)
 			longest = current;
 		head = head->next;
@@ -53,7 +54,7 @@ static char	*pad_line(char *raw_line, int max_width)
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (raw_line[i] != '\0' && raw_line[i] != '\n')
+	while (raw_line[i] != '\0' && raw_line[i] != '\n' && i < max_width)
 	{
 		line[i] = raw_line[i];
 		i++;
@@ -73,7 +74,7 @@ int	create_map(t_scene *scene, t_map_node *head)
 	t_map_node	*current;
 
 	scene->map.map_height = get_height(head);
-	scene->map.map_width = get_width(head) - 1;
+	scene->map.map_width = get_width(head);
 	scene->map.map = malloc(sizeof(char *) * (scene->map.map_height + 1));
 	if (!scene->map.map)
 		return (ERR_MALLOC);

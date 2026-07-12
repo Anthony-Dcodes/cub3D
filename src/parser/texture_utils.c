@@ -23,7 +23,7 @@ char	*parse_texture_path(char *line, int i)
 	i += skip_whitespaces(line + i);
 	len = 0;
 	start = i;
-	while (line[i] != '\0' && line[i] != '\n' && line[i] != ' ')
+	while (line[i] != '\0' && line[i] != ' ' && !(line[i] >= 9 && line[i] <= 13))
 	{
 		len++;
 		i++;

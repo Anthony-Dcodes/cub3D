@@ -55,10 +55,12 @@ static int	parse_color(char *line, int i, int *color_dest)
 static int	load_texture(int type, t_scene *scene, char *line, int *elem_loaded)
 {
 	int	fd;
+	int	start;
 
 	if (scene->tex_paths[type] != NULL)
 		return (ERR_PARSER_TEX);
-	scene->tex_paths[type] = parse_texture_path(line, 2);
+	start = skip_whitespaces(line) + 2;
+	scene->tex_paths[type] = parse_texture_path(line, start);
 	if (!scene->tex_paths[type])
 		return (ERR_PARSER_TEX);
 	fd = open(scene->tex_paths[type], O_RDONLY);
@@ -76,11 +78,16 @@ static int	load_texture(int type, t_scene *scene, char *line, int *elem_loaded)
 static int	load_color(int type, t_scene *scene, char *line, int *elem_loaded)
 {
 	int	err;
+	int	start;
 
+	if ((type == FLOOR && scene->floor_color != - 1) ||
+		(type == CEILING && scene->ceiling_color != -1))
+		return (ERR_RGB);
+	start = skip_whitespaces(line) + 1;
 	if (type == FLOOR)
-		err = parse_color(line, 1, &scene->floor_color);
+		err = parse_color(line, start, &scene->floor_color);
 	else
-		err = parse_color(line, 1, &scene->ceiling_color);
+		err = parse_color(line, start, &scene->ceiling_color);
 	if (err != ERR_OK)
 		return (err);
 	(*elem_loaded)++;
@@ -96,5 +103,5 @@ int	check_type(int type, t_scene *scene, char *line, int *elem_loaded)
 	else if (type == FLOOR || type == CEILING)
 		return (load_color(type, scene, line, elem_loaded));
 	else
-		return (UNKNOWN);
+		return (ERR_MAP);
 }
