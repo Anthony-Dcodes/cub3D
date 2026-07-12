@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 15:49:15 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/12 16:58:37 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/12 17:09:41 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,16 @@ void	update_player_pos(t_scene *scene, double new_posx,
 	int	val_posx;
 	int	val_posy;
 
-	val_posx = (int)(new_posx + scene->player.pos_x);
-	val_posy = (int)(new_posy + scene->player.pos_y);
+	if (keycode == KEY_S)
+	{
+		val_posx = (int)(scene->player.pos_x	- new_posx);
+		val_posy = (int)(scene->player.pos_y - new_posy);
+	}
+	else
+	{
+		val_posx = (int)(new_posx + scene->player.pos_x);
+		val_posy = (int)(new_posy + scene->player.pos_y);	
+	}
 	if (scene->map.map[val_posy][val_posx] == '1')
 		return ;
 	if (keycode == KEY_S)
