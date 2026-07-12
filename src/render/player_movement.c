@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 15:49:15 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/09 16:32:32 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/12 16:58:37 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,61 @@
 #include "cub3d.h"
 #include "render.h"
 
-void	move_player(t_player *player, int keycode)
+static void	init_new_pos(double *new_posx, double *new_posy)
 {
+	*new_posx = 0;
+	*new_posy = 0;
+	return ;
+}
+
+void	get_new_player_pos(t_scene *scene, int keycode)
+{
+	double	new_posx;
+	double	new_posy;
+
+	init_new_pos(&new_posx, &new_posy);
 	if (keycode == KEY_W)
 	{
-		player->pos_x += MOVE_SPEED * player->dir_x;
-		player->pos_y += MOVE_SPEED * player->dir_y;
+		new_posx = MOVE_SPEED * scene->player.dir_x;
+		new_posy = MOVE_SPEED * scene->player.dir_y;
 	}
 	else if (keycode == KEY_S)
 	{
-		player->pos_x -= MOVE_SPEED * player->dir_x;
-		player->pos_y -= MOVE_SPEED * player->dir_y;
+		new_posx = MOVE_SPEED * scene->player.dir_x;
+		new_posy = MOVE_SPEED * scene->player.dir_y;
 	}
 	else if (keycode == KEY_A)
 	{
-		player->pos_x += MOVE_SPEED * player->dir_y;
-		player->pos_y += MOVE_SPEED * -player->dir_x;
+		new_posx = MOVE_SPEED * scene->player.dir_y;
+		new_posy = MOVE_SPEED * -scene->player.dir_x;
 	}
 	else if (keycode == KEY_D)
 	{
-		player->pos_x += MOVE_SPEED * -player->dir_y;
-		player->pos_y += MOVE_SPEED * player->dir_x;
+		new_posx = MOVE_SPEED * -scene->player.dir_y;
+		new_posy = MOVE_SPEED * scene->player.dir_x;
 	}
+	update_player_pos(scene, new_posx, new_posy, keycode);
+}
+
+void	update_player_pos(t_scene *scene, double new_posx,
+		double new_posy, int keycode)
+{
+	int	val_posx;
+	int	val_posy;
+
+	val_posx = (int)(new_posx + scene->player.pos_x);
+	val_posy = (int)(new_posy + scene->player.pos_y);
+	if (scene->map.map[val_posy][val_posx] == '1')
+		return ;
+	if (keycode == KEY_S)
+	{
+		scene->player.pos_x -= new_posx;
+		scene->player.pos_y -= new_posy;
+		return ;
+	}
+	scene->player.pos_x += new_posx;
+	scene->player.pos_y += new_posy;
+	return ;
 }
 
 void	rotate_player(t_player *player, int keycode)
