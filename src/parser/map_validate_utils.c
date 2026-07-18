@@ -49,7 +49,7 @@ int	check_map_char(t_scene *scene, int x, int y, int *player_count)
 
 	c = scene->map.map[y][x];
 	if (!ft_strchr("01NSEW ", c))
-		return (ERR_MAP);
+		return (ERR_INV_CHAR_MAP);
 	if (ft_strchr("NSEW", c))
 	{
 		(*player_count)++;
@@ -80,7 +80,7 @@ int	check_map_enclosure(t_scene *scene)
 {
 	char	**visited;
 	int		i;
-	int		result;
+	int		j;
 
 	visited = malloc(sizeof(char *) * scene->map.map_height);
 	if (!visited)
@@ -93,10 +93,20 @@ int	check_map_enclosure(t_scene *scene)
 			return (free_visited(visited, i), ERR_MALLOC);
 		i++;
 	}
-	result = flood_fill(scene, visited, (int)scene->player.pos_y,
-			(int)scene->player.pos_x);
-	free_visited(visited, scene->map.map_height);
-	if (result != 0)
-		return (ERR_MAP);
-	return (ERR_OK);
+	i = 0;
+	while (i < scene->map.map_height)
+	{
+		j = 0;
+		while (j < scene->map.map_width)
+		{
+			if (ft_strchr("0NSEW", visited[i][j]))
+			{
+				if (flood_fill(scene, visited, i, j) != 0)
+					return (free_visited(visited, scene->map.map_height), ERR_MAP_UNCLOSED);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (free_visited(visited, scene->map.map_height), ERR_OK);
 }

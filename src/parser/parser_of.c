@@ -6,7 +6,7 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 17:01:26 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/12 14:34:47 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/18 21:36:36 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,21 @@ static int	parse_config(int fd, t_scene *scene)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (ERR_MAP);
+			return (ERR_MISSING_TEX);
 		type = identify_elements(line);
+		if (type == EMPTY)
+		{
+			free(line);
+			continue; 
+		}
+		if (type == UNKNOWN)
+			return (free(line), ERR_MISSING_TEX);
 		err = check_type(type, scene, line, &elem_loaded);
 		if (err != ERR_OK)
 			return (free(line), err);
 		free(line);
 	}
-	return (ERR_OK);
+	return (check_dup_and_col(scene));
 }
 
 static int	process_map_line(char *line, t_map_node **head, int *started)
@@ -42,12 +49,14 @@ static int	process_map_line(char *line, t_map_node **head, int *started)
 
 	if (identify_elements(line) == EMPTY)
 	{
-		if (*started)
-			return (ERR_MAP);
+		if (*started == 1)
+			*started = 2;
 		free(line);
 	}
 	else
 	{
+		if (*started == 2)
+			return (ERR_EMPTY_LINE_MAP);
 		*started = 1;
 		new_node = new_map_node(line);
 		if (!new_node)
@@ -75,7 +84,7 @@ static int	parse_map_lines(int fd, t_scene *scene)
 		line = get_next_line(fd);
 	}
 	if (!map_started || !map_head)
-		return (ERR_MAP);
+		return (ERR_EMPTY_FILE);
 	return (create_map(scene, map_head));
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/12 16:57:39 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/18 18:20:05 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,30 @@ void	error_parser(int err)
 {
 	if (err == ERR_ARGS)
 		ft_putstr_fd("Invalid arguments. Usage: ./cub3D <map.cub>", 2);
-	else if (err == ERR_MAP)
-		ft_putstr_fd("Invalid map configuration or missing map.", 2);
-	else if (err == ERR_RGB)
-		ft_putstr_fd("Invalid RGB color format for floor or ceiling.", 2);
-	else if (err == ERR_PARSER_TEX)
-		ft_putstr_fd("Invalid texture path or loading failure.", 2);
+	else if (err == ERR_EMPTY_FILE)
+		ft_putstr_fd("File with the map is empty", 2);
+	else if (err == ERR_PLAYER)
+		ft_putstr_fd("Invalid number of players", 2);
+	else if (err == ERR_SMALL_MAP)
+		ft_putstr_fd("Map is too small", 2);
+	else if (err == ERR_DUP_TEX_FLAG)
+		ft_putstr_fd("Textures have same flag", 2);
+	else if (err == ERR_DUP_TEX_PATH || err == ERR_INV_PATH_TEX || err == ERR_MISSING_PATH_TEX)
+		ft_putstr_fd("Textures have same, invalid or missing path", 2);
+	else if (err == ERR_INV_CHAR_TEX)
+		ft_putstr_fd("After texture is unspecified data", 2);
+	else if (err == ERR_MISSING_TEX)
+		ft_putstr_fd("Texture is missing", 2);
+	else if (err == ERR_INV_CHAR_MAP)
+		ft_putstr_fd("Invalid character in map", 2);
+	else if (err == ERR_DUP_COLOR_FLAG || err == ERR_DUP_COLOR || err == ERR_MISSING_COLOR)
+		ft_putstr_fd("C or F have same color flag, color or missing", 2);
+	else if (err == ERR_INV_COLOR_NUM || err == ERR_MORE_NUM_COLOR)
+		ft_putstr_fd("Color has invalid number or more than 3 numbers", 2);
+	else if (err == ERR_EMPTY_LINE_MAP)
+		ft_putstr_fd("Empty line inside of the map", 2);
+	else if (err == ERR_MAP_UNCLOSED)
+		ft_putstr_fd("Map is not enclosed", 2);
 	else if (err == ERR_MALLOC)
-		ft_putstr_fd("Memory allocation failed (malloc).", 2);
+		ft_putstr_fd("Memory allocation failed", 2);
 }

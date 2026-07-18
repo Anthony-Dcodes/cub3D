@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 18:17:07 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/09 15:24:22 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/12 18:30:16 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,24 @@ typedef enum e_error
 	ERR_OK,
 	ERR_MALLOC,
 	ERR_ARGS,
-	ERR_MAP,
-	ERR_RGB,
+	ERR_PLAYER,
+	ERR_DUP_COLOR_FLAG,
+	ERR_DUP_TEX_FLAG,
+	ERR_DUP_TEX_PATH,
+	ERR_EMPTY_FILE,
+	ERR_EMPTY_LINE_MAP,
+	ERR_INV_CHAR_TEX,
+	ERR_INV_CHAR_MAP,
+	ERR_INV_COLOR_NUM,
+	ERR_INV_PATH_TEX,
+	ERR_MAP_UNCLOSED,
+	ERR_MISSING_PATH_TEX,
+	ERR_MISSING_COLOR,
+	ERR_MISSING_TEX,
+	ERR_MORE_NUM_COLOR,
+	ERR_DUP_COLOR,
+	ERR_SMALL_MAP,
 	ERR_TEXTURES,
-	ERR_PARSER_TEX,
 	ERR_MLX_INIT,
 	ERR_MLX_WIN
 	// Bunch more Error codes needed for specific problems

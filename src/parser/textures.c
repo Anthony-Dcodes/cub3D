@@ -34,20 +34,23 @@ static int	parse_color(char *line, int i, int *color_dest)
 	int	g;
 	int	b;
 
-	while (line[i] == ' ')
-		i++;
-	r = get_single_rgb(line, &i);
-	if (r < 0 || r > 255 || line[i++] != ',')
-		return (ERR_RGB);
-	g = get_single_rgb(line, &i);
-	if (g < 0 || g > 255 || line[i++] != ',')
-		return (ERR_RGB);
-	b = get_single_rgb(line, &i);
-	if (b < 0 || b > 255)
-		return (ERR_RGB);
 	i += skip_whitespaces(line + i);
+	r = get_single_rgb(line, &i);
+	i += skip_whitespaces(line + i);
+	if (r < 0 || r > 255 || line[i++] != ',')
+		return (ERR_INV_COLOR_NUM);
+	i += skip_whitespaces(line + i);
+	g = get_single_rgb(line, &i);
+	i += skip_whitespaces(line + i);
+	if (g < 0 || g > 255 || line[i++] != ',')
+		return (ERR_INV_COLOR_NUM);
+	i += skip_whitespaces(line + i);
+	b = get_single_rgb(line, &i);
+	i += skip_whitespaces(line + i);
+	if (b < 0 || b > 255)
+		return (ERR_INV_COLOR_NUM);
 	if (line[i] != '\n' && line[i] != '\0')
-		return (ERR_RGB);
+		return (ERR_MORE_NUM_COLOR);
 	*color_dest = (r << 16) | (g << 8) | b;
 	return (ERR_OK);
 }
@@ -58,17 +61,17 @@ static int	load_texture(int type, t_scene *scene, char *line, int *elem_loaded)
 	int	start;
 
 	if (scene->tex_paths[type] != NULL)
-		return (ERR_PARSER_TEX);
+		return (ERR_DUP_TEX_FLAG);
 	start = skip_whitespaces(line) + 2;
 	scene->tex_paths[type] = parse_texture_path(line, start);
 	if (!scene->tex_paths[type])
-		return (ERR_PARSER_TEX);
+		return (ERR_MISSING_PATH_TEX);
 	fd = open(scene->tex_paths[type], O_RDONLY);
 	if (fd < 0)
 	{
 		free(scene->tex_paths[type]);
 		scene->tex_paths[type] = NULL;
-		return (ERR_PARSER_TEX);
+		return (ERR_INV_PATH_TEX);
 	}
 	close(fd);
 	(*elem_loaded)++;
@@ -82,7 +85,7 @@ static int	load_color(int type, t_scene *scene, char *line, int *elem_loaded)
 
 	if ((type == FLOOR && scene->floor_color != - 1) ||
 		(type == CEILING && scene->ceiling_color != -1))
-		return (ERR_RGB);
+		return (ERR_DUP_COLOR_FLAG);
 	start = skip_whitespaces(line) + 1;
 	if (type == FLOOR)
 		err = parse_color(line, start, &scene->floor_color);
@@ -103,5 +106,5 @@ int	check_type(int type, t_scene *scene, char *line, int *elem_loaded)
 	else if (type == FLOOR || type == CEILING)
 		return (load_color(type, scene, line, elem_loaded));
 	else
-		return (ERR_MAP);
+		return (ERR_INV_CHAR_TEX);
 }

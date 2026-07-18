@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:10:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/06 15:33:18 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/18 20:04:57 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,4 @@ char		*parse_texture_path(char *line, int i);
 int			identify_elements(char *line);
 int			check_type(int type, t_scene *scene, char *line, int *elem_loaded);
 int			parser(t_scene *scene, int argc, char *argv[]);
+int			check_dup_and_col(t_scene *scene);

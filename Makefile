@@ -51,7 +51,6 @@ SRCS = \
 	$(SRCS_RENDER)/textures_get.c \
 	$(SRCS_RENDER)/player_movement.c \
 	$(SRCS_RENDER)/init_mlx_win_hooks.c \
-	$(SRCS_PARSER)/parser.c
 
 
 HEADERS = \
