@@ -6,7 +6,7 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 11:59:33 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/18 18:20:05 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/19 16:24:48 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	error_message(int err)
 	ft_putstr_fd("Error\n", 2);
 	error_render(err);
 	error_parser(err);
+	error_parser_tex(err);
 	ft_putstr_fd("\n", 2);
 }
 
@@ -89,17 +90,10 @@ void	error_parser(int err)
 		ft_putstr_fd("Invalid number of players", 2);
 	else if (err == ERR_SMALL_MAP)
 		ft_putstr_fd("Map is too small", 2);
-	else if (err == ERR_DUP_TEX_FLAG)
-		ft_putstr_fd("Textures have same flag", 2);
-	else if (err == ERR_DUP_TEX_PATH || err == ERR_INV_PATH_TEX || err == ERR_MISSING_PATH_TEX)
-		ft_putstr_fd("Textures have same, invalid or missing path", 2);
-	else if (err == ERR_INV_CHAR_TEX)
-		ft_putstr_fd("After texture is unspecified data", 2);
-	else if (err == ERR_MISSING_TEX)
-		ft_putstr_fd("Texture is missing", 2);
 	else if (err == ERR_INV_CHAR_MAP)
 		ft_putstr_fd("Invalid character in map", 2);
-	else if (err == ERR_DUP_COLOR_FLAG || err == ERR_DUP_COLOR || err == ERR_MISSING_COLOR)
+	else if (err == ERR_DUP_COLOR_FLAG || err == ERR_DUP_COLOR
+		|| err == ERR_MISSING_COLOR)
 		ft_putstr_fd("C or F have same color flag, color or missing", 2);
 	else if (err == ERR_INV_COLOR_NUM || err == ERR_MORE_NUM_COLOR)
 		ft_putstr_fd("Color has invalid number or more than 3 numbers", 2);

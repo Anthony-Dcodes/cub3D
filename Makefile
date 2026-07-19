@@ -34,6 +34,7 @@ SRCS = \
 	$(SRCS_PARSER)/parser_utils.c \
 	$(SRCS_PARSER)/parser_clean_up.c \
 	$(SRCS_PARSER)/parser_of.c \
+	$(SRCS_RENDER)/error_tex.c \
 	$(SRCS_RENDER)/cleanup.c \
 	$(SRCS_RENDER)/pixel_put.c \
 	$(SRCS_RENDER)/render_scene.c \

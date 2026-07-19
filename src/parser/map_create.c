@@ -37,7 +37,7 @@ static int	get_width(t_map_node *head)
 	{
 		current = ft_strlen(head->line);
 		if (current > 0 && (head->line[current - 1] == '\n'
-			|| head->line[current - 1] == '\r'))
+				|| head->line[current - 1] == '\r'))
 			current--;
 		if (longest < current)
 			longest = current;
@@ -56,9 +56,12 @@ static char	*pad_line(char *raw_line, int max_width)
 		return (NULL);
 	i = 0;
 	while (raw_line[i] != '\0' && raw_line[i] != '\n' && raw_line[i] != '\r'
-			&& raw_line[i] != '\t' && i < max_width)
+		&& i < max_width)
 	{
-		line[i] = raw_line[i];
+		if (raw_line[i] == '\t')
+			line[i] = ' ';
+		else
+			line[i] = raw_line[i];
 		i++;
 	}
 	while (i < max_width)

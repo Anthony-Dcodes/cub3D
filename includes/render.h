@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:12:21 by advorace          #+#    #+#             */
-/*   Updated: 2026/07/12 17:11:25 by advorace         ###   ########.fr       */
+/*   Updated: 2026/07/19 16:22:55 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	clean_up_textures(t_scene *scene);
 void	error_message(int err);
 void	error_render(int err);
 void	error_parser(int err);
+void	error_parser_tex(int err);
 
 // Pixels / render
 int		create_trgb(int t, int r, int g, int b);

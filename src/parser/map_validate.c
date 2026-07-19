@@ -13,26 +13,67 @@
 #include "cub3d.h"
 #include "parser.h"
 
-int	check_dup_and_col(t_scene *scene)
+static int	flood_fill(t_scene *scene, char **visited, int y, int x)
 {
-	int	i;
-	int	j;
+	if (y < 0 || y >= scene->map.map_height || x < 0
+		|| x >= (int)ft_strlen(visited[y]))
+		return (1);
+	if (visited[y][x] == ' ')
+		return (1);
+	if (scene->map.map[y][x] == '1' || visited[y][x] == 'V')
+		return (0);
+	visited[y][x] = 'V';
+	return (flood_fill(scene, visited, y - 1, x)
+		|| flood_fill(scene, visited, y + 1, x)
+		|| flood_fill(scene, visited, y, x - 1)
+		|| flood_fill(scene, visited, y, x + 1));
+}
 
+static char	**init_visited_map(t_scene *scene)
+{
+	char	**visited;
+	int		i;
+
+	visited = malloc(sizeof(char *) * scene->map.map_height);
+	if (!visited)
+		return (NULL);
 	i = 0;
-	while (i < 3)
+	while (i < scene->map.map_height)
 	{
-		j = i + 1;
-		while (j < 4)
-		{
-			if (ft_strncmp(scene->tex_paths[i], scene->tex_paths[j],
-				ft_strlen(scene->tex_paths[i]) + 1) == 0)
-			return (ERR_DUP_TEX_PATH);
-			j++;
-		}
+		visited[i] = ft_strdup(scene->map.map[i]);
+		if (!visited[i])
+			return (free_visited(visited, i), NULL);
 		i++;
 	}
-	if (scene->floor_color == scene->ceiling_color)
-		return (ERR_DUP_COLOR);
+	return (visited);
+}
+
+int	check_map_enclosure(t_scene *scene)
+{
+	char	**visited;
+	int		i;
+	int		j;
+
+	visited = init_visited_map(scene);
+	if (!visited)
+		return (ERR_MALLOC);
+	i = -1;
+	while (++i < scene->map.map_height)
+	{
+		j = -1;
+		while (++j < scene->map.map_width)
+		{
+			if (ft_strchr("0NSEW", visited[i][j]))
+			{
+				if (flood_fill(scene, visited, i, j) != 0)
+				{
+					free_visited(visited, scene->map.map_height);
+					return (ERR_MAP_UNCLOSED);
+				}
+			}
+		}
+	}
+	free_visited(visited, scene->map.map_height);
 	return (ERR_OK);
 }
 

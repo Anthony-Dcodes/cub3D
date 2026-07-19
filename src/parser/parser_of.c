@@ -6,7 +6,7 @@
 /*   By: msnizek <msnizek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 17:01:26 by msnizek           #+#    #+#             */
-/*   Updated: 2026/07/18 21:36:36 by msnizek          ###   ########.fr       */
+/*   Updated: 2026/07/19 17:01:16 by msnizek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,16 @@ static int	parse_config(int fd, t_scene *scene)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (ERR_MISSING_TEX);
+			return (check_missing_elem(scene, line));
 		type = identify_elements(line);
-		if (type == EMPTY)
-		{
-			free(line);
-			continue; 
-		}
 		if (type == UNKNOWN)
-			return (free(line), ERR_MISSING_TEX);
-		err = check_type(type, scene, line, &elem_loaded);
-		if (err != ERR_OK)
-			return (free(line), err);
+			return (check_missing_elem(scene, line));
+		if (type != EMPTY)
+		{
+			err = check_type(type, scene, line, &elem_loaded);
+			if (err != ERR_OK)
+				return (free(line), err);
+		}
 		free(line);
 	}
 	return (check_dup_and_col(scene));
@@ -128,5 +126,5 @@ int	parser(t_scene *scene, int argc, char *argv[])
 		free_textures(scene);
 		return (err);
 	}
-	return (scene->win_h = SCREEN_HEIGHT, scene->win_w= SCREEN_WIDTH, ERR_OK);
+	return (scene->win_h = SCREEN_HEIGHT, scene->win_w = SCREEN_WIDTH, ERR_OK);
 }

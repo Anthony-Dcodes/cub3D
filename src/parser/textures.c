@@ -83,8 +83,8 @@ static int	load_color(int type, t_scene *scene, char *line, int *elem_loaded)
 	int	err;
 	int	start;
 
-	if ((type == FLOOR && scene->floor_color != - 1) ||
-		(type == CEILING && scene->ceiling_color != -1))
+	if ((type == FLOOR && scene->floor_color != -1)
+		|| (type == CEILING && scene->ceiling_color != -1))
 		return (ERR_DUP_COLOR_FLAG);
 	start = skip_whitespaces(line) + 1;
 	if (type == FLOOR)
